@@ -1,4 +1,5 @@
 // LOCATIONS DIRECTORY (OFFICIAL DATA FROM PRIME BURGER NETWORK)
+// Accurate GPS coordinates & delivery availability for each location
 const LOCATIONS = {
   bistrita: { 
     city: 'Bistrița', 
@@ -6,7 +7,10 @@ const LOCATIONS = {
     phone: '0742454444', 
     formattedPhone: '+40 742 454 444',
     hours: 'Marți: 09:30-23:30, Miercuri-Duminică: 09:30-00:00',
-    service: 'Dine-in · La pachet · Livrare locală'
+    service: 'Dine-in · La pachet · Livrare locală (max 10 km)',
+    lat: 47.1325,
+    lng: 24.5001,
+    hasDelivery: true
   },
   baiamare: { 
     city: 'Baia Mare', 
@@ -14,7 +18,10 @@ const LOCATIONS = {
     phone: '0754836169', 
     formattedPhone: '+40 754 836 169',
     hours: 'Marți - Duminică: 09:00 - 21:00',
-    service: 'Dine-in · La pachet · Livrare locală'
+    service: 'Dine-in · La pachet · Livrare locală (max 10 km)',
+    lat: 47.6597,
+    lng: 23.5795,
+    hasDelivery: true
   },
   botosani: { 
     city: 'Botoșani', 
@@ -22,7 +29,10 @@ const LOCATIONS = {
     phone: '0743390390', 
     formattedPhone: '+40 743 390 390',
     hours: 'Marți - Sâmbătă: 11:00 - 23:00, Duminică: 12:00 - 23:00',
-    service: 'Dine-in · La pachet · Livrare locală'
+    service: 'Dine-in · La pachet · Livrare locală (max 10 km)',
+    lat: 47.7460,
+    lng: 26.6695,
+    hasDelivery: true
   },
   radauti: { 
     city: 'Rădăuți', 
@@ -30,7 +40,10 @@ const LOCATIONS = {
     phone: '0753598638', 
     formattedPhone: '+40 753 598 638',
     hours: 'Marți - Sâmbătă: 09:00 - 21:30, Duminică: 13:00 - 21:30',
-    service: 'Dine-in · La pachet · Livrare locală'
+    service: 'Dine-in · La pachet · Livrare locală (max 10 km)',
+    lat: 47.8427,
+    lng: 25.9189,
+    hasDelivery: true
   },
   siret: { 
     city: 'Siret', 
@@ -38,7 +51,10 @@ const LOCATIONS = {
     phone: '0772282187', 
     formattedPhone: '+40 772 282 187',
     hours: 'Marți - Sâmbătă: 09:30 - 21:30, Duminică: 12:00 - 21:30',
-    service: 'Dine-in · La pachet · Livrare locală'
+    service: 'Dine-in · La pachet (Ridicare din restaurant)',
+    lat: 47.9525,
+    lng: 26.0689,
+    hasDelivery: false
   },
   gurahumorului: { 
     city: 'Gura Humorului', 
@@ -46,7 +62,10 @@ const LOCATIONS = {
     phone: '0736150150', 
     formattedPhone: '+40 736 150 150',
     hours: 'Marți - Sâmbătă: 10:00 - 21:00, Duminică: 12:00 - 21:00',
-    service: 'Dine-in · La pachet · Livrare locală'
+    service: 'Dine-in · La pachet · Livrare locală (max 10 km)',
+    lat: 47.5544,
+    lng: 25.8978,
+    hasDelivery: true
   },
   dumbraveni: { 
     city: 'Dumbrăveni', 
@@ -54,7 +73,10 @@ const LOCATIONS = {
     phone: '0759888588', 
     formattedPhone: '+40 759 888 588',
     hours: 'Marți - Sâmbătă: 10:00 - 21:00, Duminică: 12:30 - 21:30',
-    service: 'Dine-in · La pachet · Livrare locală'
+    service: 'Dine-in · La pachet · Hub Central Logistic',
+    lat: 47.6567,
+    lng: 26.4256,
+    hasDelivery: false
   },
   bosanci: { 
     city: 'Bosanci', 
@@ -62,7 +84,10 @@ const LOCATIONS = {
     phone: '0740333314', 
     formattedPhone: '+40 740 333 314',
     hours: 'Marți - Sâmbătă: 10:00 - 22:00, Duminică: 12:00 - 22:00',
-    service: 'Dine-in · La pachet · Livrare locală'
+    service: 'Dine-in · La pachet (Ridicare din restaurant)',
+    lat: 47.5858,
+    lng: 26.3142,
+    hasDelivery: false
   },
   bivolarie: { 
     city: 'Bivolărie', 
@@ -70,7 +95,10 @@ const LOCATIONS = {
     phone: '0746677706', 
     formattedPhone: '+40 746 677 706',
     hours: 'Marți - Sâmbătă: 10:00 - 22:00, Duminică: 11:30 - 22:00',
-    service: 'Dine-in · La pachet · Livrare locală'
+    service: 'Dine-in · La pachet (Ridicare din restaurant)',
+    lat: 47.9250,
+    lng: 25.6883,
+    hasDelivery: false
   },
   negrestioas: { 
     city: 'Negrești Oaș', 
@@ -78,7 +106,10 @@ const LOCATIONS = {
     phone: '0772219949', 
     formattedPhone: '+40 772 219 949',
     hours: 'Marți - Sâmbătă: 09:30 - 21:30, Duminică: 12:00 - 21:30',
-    service: 'Dine-in · La pachet · Livrare locală'
+    service: 'Dine-in · La pachet (Ridicare din restaurant)',
+    lat: 47.8689,
+    lng: 23.4244,
+    hasDelivery: false
   },
   trusesti: { 
     city: 'Trușești', 
@@ -86,257 +117,787 @@ const LOCATIONS = {
     phone: '0751555512', 
     formattedPhone: '+40 751 555 512',
     hours: 'Marți - Duminică: 09:00 - 21:00',
-    service: 'Dine-in · La pachet · Livrare locală'
+    service: 'Dine-in · La pachet (Ridicare din restaurant)',
+    lat: 47.7711,
+    lng: 27.0089,
+    hasDelivery: false
   }
 };
 
 let selectedLocationKey = 'bistrita';
+let userLocation = null; // { lat, lng, key, distanceKm, isWithin10km }
 
-// 1. SUBDOMAIN SELECTOR SYNC
+// ==========================================
+// 1. HAVERSINE DISTANCE & SMART GEO-TRACKING (10 KM LIMIT)
+// ==========================================
+function calculateDistanceKm(lat1, lon1, lat2, lon2) {
+  const R = 6371; // Earth radius in km
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = 
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return Math.round(R * c * 10) / 10; // Round to 1 decimal place (e.g. 3.4 km)
+}
+
+function findClosestLocation(userLat, userLng) {
+  let closestKey = 'bistrita';
+  let minDistance = Infinity;
+
+  Object.entries(LOCATIONS).forEach(([key, loc]) => {
+    const dist = calculateDistanceKm(userLat, userLng, loc.lat, loc.lng);
+    if (dist < minDistance) {
+      minDistance = dist;
+      closestKey = key;
+    }
+  });
+
+  return {
+    key: closestKey,
+    location: LOCATIONS[closestKey],
+    distanceKm: minDistance,
+    isWithin10km: minDistance <= 10.0
+  };
+}
+
+function detectUserLocation(callback, showToastNotification = true) {
+  const btnGps = document.getElementById('btnDetectGpsMenu');
+  if (btnGps) {
+    btnGps.classList.add('loading');
+    btnGps.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Se detectează prin GPS...</span>';
+  }
+
+  if (!navigator.geolocation) {
+    if (btnGps) {
+      btnGps.classList.remove('loading');
+      btnGps.innerHTML = '<i class="fas fa-crosshairs"></i> <span>Găsește Cel Mai Apropiat Restaurant (GPS)</span>';
+    }
+    if (showToastNotification) {
+      showToast('Geolocația nu este suportată de browserul tău. Selectează orașul manual.');
+    }
+    updateGeoUI({ status: 'unsupported' });
+    if (callback) callback(null);
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      const { latitude, longitude } = position.coords;
+      const result = findClosestLocation(latitude, longitude);
+
+      userLocation = {
+        lat: latitude,
+        lng: longitude,
+        key: result.key,
+        distanceKm: result.distanceKm,
+        isWithin10km: result.isWithin10km
+      };
+
+      if (btnGps) {
+        btnGps.classList.remove('loading');
+        btnGps.innerHTML = '<i class="fas fa-check-circle" style="color:#34d399;"></i> <span>Locație GPS Identificată</span>';
+      }
+
+      // Auto-select closest restaurant across the entire app
+      updateSubdomainView(result.key);
+      updateGeoUI({ status: 'success', ...result });
+
+      if (showToastNotification) {
+        if (result.isWithin10km) {
+          if (result.location.hasDelivery) {
+            showToast(`📍 Ești la ${result.distanceKm} km de Prime Burger ${result.location.city}! Livrare și Ridicare disponibile în raza de 10 km.`);
+          } else {
+            showToast(`📍 Ești la ${result.distanceKm} km de Prime Burger ${result.location.city}! (Această locație asigură doar Ridicare / La pachet).`);
+          }
+        } else {
+          showToast(`📍 Cel mai apropiat restaurant: Prime Burger ${result.location.city} la ${result.distanceKm} km (în afara razei de 10 km pentru livrare directă - poți comanda cu Ridicare).`);
+        }
+      }
+
+      if (callback) callback(userLocation);
+    },
+    (err) => {
+      console.warn('Geolocation error:', err.message);
+      if (btnGps) {
+        btnGps.classList.remove('loading');
+        btnGps.innerHTML = '<i class="fas fa-crosshairs"></i> <span>Găsește Cel Mai Apropiat Restaurant (GPS)</span>';
+      }
+      updateGeoUI({ status: 'denied' });
+      if (showToastNotification) {
+        showToast('Localizarea GPS a fost refuzată sau este indisponibilă. Poți alege orașul manual din listă.');
+      }
+      if (callback) callback(null);
+    },
+    { enableHighAccuracy: true, timeout: 8000, maximumAge: 180000 }
+  );
+}
+
+function updateGeoUI(geoInfo) {
+  const distTag = document.getElementById('menuDistanceTag');
+  const geoNotice = document.getElementById('menuGeoNotice');
+  const cartGeoBadge = document.getElementById('cartGeoDistBadge');
+
+  if (geoInfo.status === 'success') {
+    const loc = LOCATIONS[geoInfo.key];
+    const isWithin = geoInfo.isWithin10km;
+
+    if (distTag) {
+      distTag.style.display = 'inline-flex';
+      distTag.className = `geo-distance-tag ${isWithin ? 'in-radius' : 'out-radius'}`;
+      distTag.innerHTML = isWithin 
+        ? `<i class="fas fa-check-circle"></i> Ești la <strong>${geoInfo.distanceKm} km</strong> (În raza de livrare 10 km)`
+        : `<i class="fas fa-exclamation-triangle"></i> Ești la <strong>${geoInfo.distanceKm} km</strong> (Peste limita de 10 km)`;
+    }
+
+    if (geoNotice) {
+      if (!isWithin) {
+        geoNotice.style.display = 'block';
+        geoNotice.innerHTML = `<i class="fas fa-info-circle"></i> Ești la <strong>${geoInfo.distanceKm} km</strong> de locația din ${loc.city}. Livrarea la domiciliu este limitată la <strong>10 km</strong>, dar poți comanda cu <strong>Ridicare din restaurant (Takeaway)</strong> sau alege alt oraș.`;
+      } else if (!loc.hasDelivery) {
+        geoNotice.style.display = 'block';
+        geoNotice.innerHTML = `<i class="fas fa-info-circle"></i> Ești în raza de acoperire (<strong>${geoInfo.distanceKm} km</strong>), însă locația din ${loc.city} funcționează exclusiv în regim <strong>Dine-in & Ridicare / La pachet</strong>.`;
+      } else {
+        geoNotice.style.display = 'none';
+      }
+    }
+
+    if (cartGeoBadge) {
+      cartGeoBadge.className = `cart-geo-badge ${isWithin ? 'badge-ok' : 'badge-warn'}`;
+      cartGeoBadge.innerHTML = isWithin 
+        ? `<i class="fas fa-satellite"></i> GPS: ~${geoInfo.distanceKm} km (OK Livrare)`
+        : `<i class="fas fa-satellite"></i> GPS: ~${geoInfo.distanceKm} km (>10 km: Doar Ridicare)`;
+    }
+  } else if (geoInfo.status === 'denied' || geoInfo.status === 'unsupported') {
+    if (distTag) {
+      distTag.style.display = 'inline-flex';
+      distTag.className = 'geo-distance-tag manual-mode';
+      distTag.innerHTML = '<i class="fas fa-map-pin"></i> Selectare manuală oraș';
+    }
+    if (cartGeoBadge) {
+      cartGeoBadge.className = 'cart-geo-badge';
+      cartGeoBadge.textContent = 'Selectat manual';
+    }
+  }
+
+  updateFulfillmentOptions();
+}
+
+function updateFulfillmentOptions() {
+  const loc = LOCATIONS[selectedLocationKey];
+  const select = document.getElementById('cartOrderTypeSelect');
+  const deliveryNotice = document.getElementById('cartDeliveryNotice');
+  const addressWrap = document.getElementById('cartAddressFieldWrap');
+
+  if (!loc || !select) return;
+
+  const optDelivery = select.querySelector('option[value="Livrare la domiciliu"]');
+  const optPickup = select.querySelector('option[value="Ridicare din restaurant"]');
+
+  let deliveryAllowed = true;
+  let reason = '';
+
+  if (!loc.hasDelivery) {
+    deliveryAllowed = false;
+    reason = 'Restaurantul din această locație asigură doar Ridicare / La pachet (fără livrare la domiciliu).';
+  } else if (userLocation && userLocation.key === selectedLocationKey && !userLocation.isWithin10km) {
+    deliveryAllowed = false;
+    reason = `Distanța ta (${userLocation.distanceKm} km) depășește limita operațională de 10 km. Disponibil doar cu Ridicare personală.`;
+  }
+
+  if (optDelivery) {
+    if (!deliveryAllowed) {
+      optDelivery.disabled = true;
+      optDelivery.textContent = '🛵 Livrare la domiciliu (Indisponibilă)';
+      select.value = 'Ridicare din restaurant';
+    } else {
+      optDelivery.disabled = false;
+      optDelivery.textContent = '🛵 Livrare la domiciliu (În raza de 10 km)';
+    }
+  }
+
+  if (deliveryNotice) {
+    if (!deliveryAllowed) {
+      deliveryNotice.textContent = reason;
+      deliveryNotice.style.color = '#FFC222';
+    } else {
+      deliveryNotice.textContent = 'Livrarea directă se efectuează în maximum 10 km de la restaurant.';
+      deliveryNotice.style.color = 'var(--text-dim)';
+    }
+  }
+
+  // Toggle delivery address visibility
+  if (addressWrap) {
+    addressWrap.style.display = select.value === 'Livrare la domiciliu' ? 'block' : 'none';
+  }
+}
+
+// Global Order CTA Click: detect GPS and smooth scroll to menu
+function handleOrderCtaClick(e) {
+  if (e) e.preventDefault();
+  const menuElem = document.getElementById('meniu');
+  if (menuElem) {
+    menuElem.scrollIntoView({ behavior: 'smooth' });
+  }
+  if (!userLocation) {
+    detectUserLocation(null, true);
+  }
+}
+
+// ==========================================
+// 2. SUBDOMAIN & LOCATION SELECTORS SYNC
+// ==========================================
 const subdomainSelect = document.getElementById('subdomainSelect');
+const menuLocationSelect = document.getElementById('menuLocationSelect');
+const cartLocationSelect = document.getElementById('cartLocationSelect');
 const browserUrlPreview = document.getElementById('browserUrlPreview');
 const browserCityPreview = document.getElementById('browserCityPreview');
 const browserPhonePreview = document.getElementById('browserPhonePreview');
 const browserSchedulePreview = document.getElementById('browserSchedulePreview');
-const modalOrderCityLabel = document.getElementById('modalOrderCityLabel');
+const menuServiceBadge = document.getElementById('menuServiceBadge');
 
 function updateSubdomainView(key) {
+  if (!LOCATIONS[key]) return;
   selectedLocationKey = key;
   const loc = LOCATIONS[key];
-  if (!loc) return;
 
+  // Sync all dropdowns
+  if (subdomainSelect && subdomainSelect.value !== key) subdomainSelect.value = key;
+  if (menuLocationSelect && menuLocationSelect.value !== key) menuLocationSelect.value = key;
+  if (cartLocationSelect && cartLocationSelect.value !== key) cartLocationSelect.value = key;
+
+  // Sync previews
   if (browserUrlPreview) browserUrlPreview.textContent = `https://${loc.subdomain}`;
   if (browserCityPreview) browserCityPreview.textContent = `Prime Burger ${loc.city}`;
   if (browserPhonePreview) browserPhonePreview.innerHTML = `<i class="fab fa-whatsapp"></i> ${loc.formattedPhone}`;
   if (browserSchedulePreview) browserSchedulePreview.innerHTML = `<i class="far fa-clock"></i> ${loc.hours} · <span style="color:#00A149;">Deschis</span>`;
-  if (modalOrderCityLabel) modalOrderCityLabel.textContent = `Locație Curentă: ${loc.city} (${loc.subdomain})`;
+
+  // Sync menu service badge
+  if (menuServiceBadge) {
+    if (loc.hasDelivery) {
+      menuServiceBadge.className = 'geo-service-badge badge-delivery';
+      menuServiceBadge.innerHTML = '<i class="fas fa-motorcycle"></i> Livrare max 10 km & Ridicare';
+    } else {
+      menuServiceBadge.className = 'geo-service-badge badge-pickup';
+      menuServiceBadge.innerHTML = '<i class="fas fa-shopping-bag"></i> Exclusiv Ridicare (Takeaway)';
+    }
+  }
+
+  // Update floating cart snippet
+  const snippet = document.getElementById('cartLocationSnippet');
+  if (snippet) {
+    let distStr = (userLocation && userLocation.key === key) ? ` (${userLocation.distanceKm} km)` : '';
+    snippet.textContent = `Prime Burger ${loc.city}${distStr}`;
+  }
+
+  // Update fulfillment options in modal
+  updateFulfillmentOptions();
 }
 
+// Populate menu & cart dropdowns from LOCATIONS
+function populateLocationDropdowns() {
+  const optionsHtml = Object.entries(LOCATIONS).map(([key, loc]) => {
+    const deliveryTag = loc.hasDelivery ? ' [Livrare 10km]' : ' [Doar Ridicare]';
+    return `<option value="${key}">${loc.city} - ${loc.subdomain}${deliveryTag}</option>`;
+  }).join('');
+
+  if (menuLocationSelect) {
+    menuLocationSelect.innerHTML = optionsHtml;
+    menuLocationSelect.value = selectedLocationKey;
+    menuLocationSelect.addEventListener('change', (e) => {
+      updateSubdomainView(e.target.value);
+      updateGeoUI({ status: 'manual', key: e.target.value });
+    });
+  }
+
+  if (cartLocationSelect) {
+    cartLocationSelect.innerHTML = optionsHtml;
+    cartLocationSelect.value = selectedLocationKey;
+    cartLocationSelect.addEventListener('change', (e) => {
+      updateSubdomainView(e.target.value);
+      updateGeoUI({ status: 'manual', key: e.target.value });
+    });
+  }
+
+  if (subdomainSelect) {
     subdomainSelect.addEventListener('change', (e) => {
       updateSubdomainView(e.target.value);
+      updateGeoUI({ status: 'manual', key: e.target.value });
     });
+  }
+}
 
-    // 2. ROMANIA SVG MAP INTERACTIVITY (NO TOOLTIPS, DIRECT EXPANSION CLICK)
-
-    // 3. ROMANIA SVG MAP INTERACTIVITY (NO TOOLTIPS, DIRECT EXPANSION CLICK)
-    // Click on pulsating radar nodes jumps to franchise application form
-    document.querySelectorAll('.radar-node').forEach(node => {
-      node.addEventListener('click', () => {
-        const city = node.dataset.city;
-        const input = document.getElementById('applicantCity');
-        if (input) {
-          input.value = city;
-          input.focus();
-        }
-        const franchiseSection = document.getElementById('franciza');
-        if (franchiseSection) {
-          franchiseSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
-
-    // 4. ORDER MODAL LOGIC (STEP-BY-STEP GONDOLA STYLE)
-    let currentBurger = {
-      name: 'Prime Burger Signature',
-      basePrice: 34,
-      pattyPrice: 0,
-      pattyName: 'Standard Patty (120g)',
-      sidePrice: 0,
-      sideName: 'Fără Cartofi',
-      sauces: [],
-      drinks: []
-    };
-
-    const orderModal = document.getElementById('orderModal');
-    const modalBurgerTitle = document.getElementById('modalBurgerTitle');
-    const modalLiveTotal = document.getElementById('modalLiveTotal');
-
-    function openOrderModal(burgerName, price, slug) {
-      currentBurger.name = burgerName;
-      currentBurger.basePrice = price;
-      currentBurger.pattyPrice = 0;
-      currentBurger.pattyName = 'Standard Patty (120g)';
-      currentBurger.sidePrice = 0;
-      currentBurger.sideName = 'Fără Cartofi';
-      currentBurger.sauces = [];
-      currentBurger.drinks = [];
-
-      modalBurgerTitle.textContent = burgerName;
-      
-      // Reset selections
-      document.querySelectorAll('#pattyOptions .option-card-radio').forEach((c, idx) => {
-        c.classList.toggle('selected', idx === 0);
-      });
-      document.querySelectorAll('#sidesOptions .option-card-radio').forEach((c, idx) => {
-        c.classList.toggle('selected', idx === 0);
-      });
-      document.querySelectorAll('.option-card-check').forEach(c => c.classList.remove('selected'));
-
-      updateLiveTotal();
-      orderModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
+// ==========================================
+// 3. ROMANIA SVG MAP INTERACTIVITY
+// ==========================================
+document.querySelectorAll('.radar-node').forEach(node => {
+  node.addEventListener('click', () => {
+    const city = node.dataset.city;
+    const input = document.getElementById('applicantCity');
+    if (input) {
+      input.value = city;
+      input.focus();
     }
-
-    function closeOrderModal() {
-      orderModal.classList.remove('active');
-      document.body.style.overflow = '';
+    const franchiseSection = document.getElementById('franciza');
+    if (franchiseSection) {
+      franchiseSection.scrollIntoView({ behavior: 'smooth' });
     }
+  });
+});
 
-    // Step 1: Radio Patty
-    document.querySelectorAll('#pattyOptions .option-card-radio').forEach(opt => {
-      opt.addEventListener('click', () => {
-        document.querySelectorAll('#pattyOptions .option-card-radio').forEach(o => o.classList.remove('selected'));
-        opt.classList.add('selected');
-        currentBurger.pattyPrice = parseInt(opt.dataset.price) || 0;
-        currentBurger.pattyName = opt.dataset.name;
-        updateLiveTotal();
-      });
-    });
+// ==========================================
+// 4. STEP-BY-STEP BURGER CONFIGURATOR (GONDOLA STYLE)
+// ==========================================
+let currentBurger = {
+  name: 'Prime Burger Signature',
+  basePrice: 0,
+  pattyPrice: 0,
+  pattyName: 'Standard Patty (120g)',
+  sidePrice: 0,
+  sideName: 'Fără Cartofi',
+  sauces: [],
+  drinks: [],
+  notes: ''
+};
 
-    // Step 2: Radio Sides
-    document.querySelectorAll('#sidesOptions .option-card-radio').forEach(opt => {
-      opt.addEventListener('click', () => {
-        document.querySelectorAll('#sidesOptions .option-card-radio').forEach(o => o.classList.remove('selected'));
-        opt.classList.add('selected');
-        currentBurger.sidePrice = parseInt(opt.dataset.price) || 0;
-        currentBurger.sideName = opt.dataset.name;
-        updateLiveTotal();
-      });
-    });
+const orderModal = document.getElementById('orderModal');
+const modalBurgerTitle = document.getElementById('modalBurgerTitle');
 
-    // Step 3: Sauces Checkboxes
-    document.querySelectorAll('#saucesOptions .option-card-check').forEach(opt => {
-      opt.addEventListener('click', () => {
-        opt.classList.toggle('selected');
-        const name = opt.dataset.name;
-        const price = parseInt(opt.dataset.price) || 4;
+function openOrderModal(burgerName, price, slug) {
+  currentBurger.name = burgerName;
+  currentBurger.basePrice = price || 0;
+  currentBurger.pattyPrice = 0;
+  currentBurger.pattyName = 'Standard Patty (120g)';
+  currentBurger.sidePrice = 0;
+  currentBurger.sideName = 'Fără Cartofi';
+  currentBurger.sauces = [];
+  currentBurger.drinks = [];
+  currentBurger.notes = '';
 
-        if (opt.classList.contains('selected')) {
-          currentBurger.sauces.push({ name, price });
-        } else {
-          currentBurger.sauces = currentBurger.sauces.filter(s => s.name !== name);
-        }
-        updateLiveTotal();
-      });
-    });
+  if (modalBurgerTitle) modalBurgerTitle.textContent = burgerName;
 
-    // Step 4: Drinks Checkboxes
-    document.querySelectorAll('#drinksOptions .option-card-check').forEach(opt => {
-      opt.addEventListener('click', () => {
-        opt.classList.toggle('selected');
-        const name = opt.dataset.name;
-        const price = parseInt(opt.dataset.price) || 6;
+  const notesInput = document.getElementById('configBurgerNotes');
+  if (notesInput) notesInput.value = '';
 
-        if (opt.classList.contains('selected')) {
-          currentBurger.drinks.push({ name, price });
-        } else {
-          currentBurger.drinks = currentBurger.drinks.filter(d => d.name !== name);
-        }
-        updateLiveTotal();
-      });
-    });
+  // Reset selections in configurator
+  document.querySelectorAll('#pattyOptions .option-card-radio').forEach((c, idx) => {
+    c.classList.toggle('selected', idx === 0);
+  });
+  document.querySelectorAll('#sidesOptions .option-card-radio').forEach((c, idx) => {
+    c.classList.toggle('selected', idx === 0);
+  });
+  document.querySelectorAll('.option-card-check').forEach(c => c.classList.remove('selected'));
 
-    function calculateTotal() {
-      let total = currentBurger.basePrice + currentBurger.pattyPrice + currentBurger.sidePrice;
-      currentBurger.sauces.forEach(s => total += s.price);
-      currentBurger.drinks.forEach(d => total += d.price);
-      return total;
+  if (orderModal) {
+    orderModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeOrderModal() {
+  if (orderModal) {
+    orderModal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+// Step 1: Radio Patty
+document.querySelectorAll('#pattyOptions .option-card-radio').forEach(opt => {
+  opt.addEventListener('click', () => {
+    document.querySelectorAll('#pattyOptions .option-card-radio').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+    currentBurger.pattyName = opt.dataset.name;
+  });
+});
+
+// Step 2: Radio Sides
+document.querySelectorAll('#sidesOptions .option-card-radio').forEach(opt => {
+  opt.addEventListener('click', () => {
+    document.querySelectorAll('#sidesOptions .option-card-radio').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+    currentBurger.sideName = opt.dataset.name;
+  });
+});
+
+// Step 3: Sauces Checkboxes
+document.querySelectorAll('#saucesOptions .option-card-check').forEach(opt => {
+  opt.addEventListener('click', () => {
+    opt.classList.toggle('selected');
+    const name = opt.dataset.name;
+    const price = parseInt(opt.dataset.price) || 0;
+
+    if (opt.classList.contains('selected')) {
+      currentBurger.sauces.push({ name, price });
+    } else {
+      currentBurger.sauces = currentBurger.sauces.filter(s => s.name !== name);
     }
+  });
+});
 
-    function updateLiveTotal() {
-      if (modalLiveTotal) modalLiveTotal.textContent = calculateTotal();
+// Step 4: Drinks Checkboxes
+document.querySelectorAll('#drinksOptions .option-card-check').forEach(opt => {
+  opt.addEventListener('click', () => {
+    opt.classList.toggle('selected');
+    const name = opt.dataset.name;
+    const price = parseInt(opt.dataset.price) || 0;
+
+    if (opt.classList.contains('selected')) {
+      currentBurger.drinks.push({ name, price });
+    } else {
+      currentBurger.drinks = currentBurger.drinks.filter(d => d.name !== name);
     }
+  });
+});
 
-    // Step 5: Send Order via WhatsApp to Chosen Subdomain Location
-    document.getElementById('btnSendWhatsAppOrder').addEventListener('click', () => {
-      const loc = LOCATIONS[selectedLocationKey] || LOCATIONS.bistrita;
-      const name = document.getElementById('orderCustomerName').value.trim() || 'Client';
-      const orderType = document.getElementById('orderTypeSelect').value;
-      const address = document.getElementById('orderCustomerAddress').value.trim();
+// ==========================================
+// 5. MULTI-BURGER CART SYSTEM
+// ==========================================
+let cart = []; // Array of burger objects
 
-      let saucesText = currentBurger.sauces.length > 0 
-        ? currentBurger.sauces.map(s => s.name).join(', ') 
-        : 'Niciunul';
+function addCurrentBurgerToCart() {
+  const notesInput = document.getElementById('configBurgerNotes');
+  const customNotes = notesInput ? notesInput.value.trim() : '';
 
-      let drinksText = currentBurger.drinks.length > 0 
-        ? currentBurger.drinks.map(d => d.name).join(', ') 
-        : 'Niciuna';
+  const item = {
+    id: Date.now() + Math.floor(Math.random() * 1000),
+    name: currentBurger.name,
+    patty: currentBurger.pattyName,
+    side: currentBurger.sideName,
+    sauces: [...currentBurger.sauces],
+    drinks: [...currentBurger.drinks],
+    notes: customNotes,
+    quantity: 1
+  };
 
-      let msg = `*COMANDĂ NOUĂ PRIME BURGER (${loc.city.toUpperCase()})*\n\n`;
-      msg += `🍔 *Burger:* ${currentBurger.name} (${currentBurger.pattyName})\n`;
-      msg += `🍟 *Garnitură:* ${currentBurger.sideName}\n`;
-      msg += `🥫 *Sosuri:* ${saucesText}\n`;
-      msg += `🥤 *Băuturi:* ${drinksText}\n\n`;
-      msg += `👤 *Client:* ${name}\n`;
-      msg += `📦 *Modalitate:* ${orderType}\n`;
-      if (address) {
-        msg += `📍 *Adresă livrare:* ${address}\n`;
+  cart.push(item);
+  renderCart();
+  closeOrderModal();
+  showToast(`🍔 ${item.name} a fost adăugat în comanda ta!`);
+}
+
+function removeCartItem(id) {
+  cart = cart.filter(item => item.id !== id);
+  renderCart();
+  if (cart.length === 0) {
+    closeCartModal();
+    showToast('Coșul de cumpărături este acum gol.');
+  }
+}
+
+function updateCartItemQty(id, delta) {
+  const item = cart.find(it => it.id === id);
+  if (!item) return;
+
+  item.quantity += delta;
+  if (item.quantity <= 0) {
+    removeCartItem(id);
+  } else {
+    renderCart();
+  }
+}
+
+function renderCart() {
+  const totalBurgers = cart.reduce((acc, it) => acc + it.quantity, 0);
+
+  // 1. Update Floating Cart Bar
+  const floatingBar = document.getElementById('floatingCartBar');
+  const cartCountBadge = document.getElementById('cartCountBadge');
+  const cartSummaryTitle = document.getElementById('cartSummaryTitle');
+  const cartCountBtn = document.getElementById('cartCountBtn');
+  const loc = LOCATIONS[selectedLocationKey];
+
+  if (floatingBar) {
+    if (totalBurgers > 0) {
+      floatingBar.style.display = 'block';
+      if (cartCountBadge) cartCountBadge.textContent = totalBurgers;
+      if (cartCountBtn) cartCountBtn.textContent = totalBurgers;
+      if (cartSummaryTitle) {
+        cartSummaryTitle.textContent = `Comanda Ta (${totalBurgers} ${totalBurgers === 1 ? 'burger' : 'burgeri'})`;
       }
-      msg += `🌐 *Comandă plasată via:* ${loc.subdomain}`;
-
-      const encodedMsg = encodeURIComponent(msg);
-      const whatsappUrl = `https://wa.me/4${loc.phone}?text=${encodedMsg}`;
-
-      window.open(whatsappUrl, '_blank');
-      closeOrderModal();
-      showToast('Comanda ta a fost trimisă către restaurant pe WhatsApp!');
-    });
-
-    // 5. FRANCHISE APPLICATION SUBMISSION
-    document.getElementById('franchiseApplicationForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('applicantName').value;
-      const phone = document.getElementById('applicantPhone').value;
-      const city = document.getElementById('applicantCity').value;
-      const budget = document.getElementById('applicantBudget').value;
-
-      showToast(`Mulțumim, ${name}! Solicitarea pentru franciza din ${city} (buget ${budget}) a fost înregistrată.`);
-      document.getElementById('franchiseApplicationForm').reset();
-    });
-
-    // 6. FREE INFO PACK DOWNLOAD FORM (BROOKLYN FITBOXING STYLE LEAD MAGNET)
-    const infoPackForm = document.getElementById('infoPackForm');
-    if (infoPackForm) {
-      infoPackForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = document.getElementById('infoPackName').value.trim();
-        const phone = document.getElementById('infoPackPhone').value.trim();
-        const city = document.getElementById('infoPackCity').value.trim();
-
-        showToast(`Mulțumim, ${name}! Ghidul Oficial al Francizei pentru ${city} se descarcă acum.`);
-
-        // Also prepare a WhatsApp direct link to HQ for immediate contact
-        const msg = encodeURIComponent(`Bună ziua! Mă numesc ${name} (Tel: ${phone}) și doresc Pachetul Informativ complet pentru deschiderea unei francize Prime Burger în orașul ${city}.`);
-        setTimeout(() => {
-          window.open(`https://wa.me/40746064310?text=${msg}`, '_blank');
-        }, 1200);
-
-        infoPackForm.reset();
-      });
-    }
-
-    // Toast helper
-    function showToast(text) {
-      const toast = document.getElementById('toastBox');
-      document.getElementById('toastText').textContent = text;
-      toast.classList.add('show');
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 4500);
-    }
-
-    // Export modal functions to global scope
-    window.openOrderModal = openOrderModal;
-    window.closeOrderModal = closeOrderModal;
-
-    // Close modal on click outside sheet
-    orderModal.addEventListener('click', (e) => {
-      if (e.target === orderModal) {
-        closeOrderModal();
+      const snippet = document.getElementById('cartLocationSnippet');
+      if (snippet && loc) {
+        let distStr = (userLocation && userLocation.key === selectedLocationKey) ? ` • ~${userLocation.distanceKm} km` : '';
+        snippet.textContent = `Prime Burger ${loc.city}${distStr}`;
       }
+    } else {
+      floatingBar.style.display = 'none';
+    }
+  }
+
+  // 2. Update Cart Modal List
+  const itemsContainer = document.getElementById('cartItemsList');
+  if (itemsContainer) {
+    if (cart.length === 0) {
+      itemsContainer.innerHTML = `
+        <div style="text-align:center; padding: 30px 10px; color:var(--text-muted);">
+          <i class="fas fa-shopping-basket" style="font-size:2.4rem; color:var(--text-dim); margin-bottom:12px; display:block;"></i>
+          <strong>Nu ai niciun burger în comandă.</strong>
+          <p style="font-size:0.86rem; margin-top:6px;">Alege rețeta dorită din meniu și configureaz-o!</p>
+        </div>
+      `;
+    } else {
+      itemsContainer.innerHTML = cart.map((item, index) => {
+        const saucesStr = item.sauces.length > 0 
+          ? item.sauces.map(s => s.name).join(', ') 
+          : 'Fără sosuri';
+        const drinksStr = item.drinks.length > 0 
+          ? item.drinks.map(d => d.name).join(', ') 
+          : 'Fără băutură';
+
+        return `
+          <div class="cart-item-card">
+            <div class="cart-item-header">
+              <div class="cart-item-title-wrap">
+                <span class="cart-item-idx">${index + 1}</span>
+                <h4 class="cart-item-name">${item.name}</h4>
+              </div>
+              <button type="button" class="btn-remove-cart-item" onclick="removeCartItem(${item.id})" title="Șterge acest burger" aria-label="Șterge burger">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+            <div class="cart-item-specs">
+              <div class="cart-spec-pill"><i class="fas fa-drumstick-bite"></i> ${item.patty}</div>
+              <div class="cart-spec-pill"><i class="fas fa-utensils"></i> ${item.side}</div>
+              <div class="cart-spec-pill"><i class="fas fa-mortar-pestle"></i> ${saucesStr}</div>
+              <div class="cart-spec-pill"><i class="fas fa-glass-cheers"></i> ${drinksStr}</div>
+              ${item.notes ? `<div class="cart-spec-pill note-pill"><i class="fas fa-comment-dots"></i> ${item.notes}</div>` : ''}
+            </div>
+            <div class="cart-item-footer">
+              <span style="font-size:0.82rem; color:var(--text-muted); font-weight:600;">Porții / Cantitate:</span>
+              <div class="cart-qty-stepper">
+                <button type="button" class="qty-btn" onclick="updateCartItemQty(${item.id}, -1)" aria-label="Scade cantitate">-</button>
+                <span class="qty-val">${item.quantity}</span>
+                <button type="button" class="qty-btn" onclick="updateCartItemQty(${item.id}, 1)" aria-label="Crește cantitate">+</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+  }
+
+  // 3. Update Footer Total Text
+  const footerCount = document.getElementById('cartFooterCount');
+  const footerTotal = document.getElementById('cartFooterTotalText');
+  if (footerCount) footerCount.textContent = `Total: ${totalBurgers} ${totalBurgers === 1 ? 'Produs' : 'Produse'}`;
+  if (footerTotal) footerTotal.textContent = `${totalBurgers} ${totalBurgers === 1 ? 'Burger Selectat' : 'Burgeri Selectați'}`;
+
+  // 4. Sync WhatsApp button text
+  const btnSubmit = document.getElementById('btnSubmitCartWhatsApp');
+  if (btnSubmit && loc) {
+    btnSubmit.innerHTML = `<i class="fab fa-whatsapp"></i> Trimite Comanda pe WhatsApp (${loc.city})`;
+  }
+}
+
+// Configurator buttons
+const btnAddToCartModal = document.getElementById('btnAddToCartModal');
+if (btnAddToCartModal) {
+  btnAddToCartModal.addEventListener('click', () => {
+    addCurrentBurgerToCart();
+  });
+}
+
+const btnAddAndCheckoutDirect = document.getElementById('btnAddAndCheckoutDirect');
+if (btnAddAndCheckoutDirect) {
+  btnAddAndCheckoutDirect.addEventListener('click', () => {
+    addCurrentBurgerToCart();
+    openCartModal();
+  });
+}
+
+// Cart Modal Open / Close
+const cartModal = document.getElementById('cartModal');
+
+function openCartModal() {
+  if (cart.length === 0) {
+    showToast('Adaugă mai întâi cel puțin un burger în comandă!');
+    return;
+  }
+  renderCart();
+  updateFulfillmentOptions();
+  if (cartModal) {
+    cartModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeCartModal() {
+  if (cartModal) {
+    cartModal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+function scrollToMenu() {
+  const menu = document.getElementById('meniu');
+  if (menu) menu.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Order fulfillment type change listener
+const cartOrderTypeSelect = document.getElementById('cartOrderTypeSelect');
+if (cartOrderTypeSelect) {
+  cartOrderTypeSelect.addEventListener('change', () => {
+    const addressWrap = document.getElementById('cartAddressFieldWrap');
+    if (addressWrap) {
+      addressWrap.style.display = cartOrderTypeSelect.value === 'Livrare la domiciliu' ? 'block' : 'none';
+    }
+  });
+}
+
+// ==========================================
+// 6. MULTI-BURGER WHATSAPP ORDER SUBMISSION
+// ==========================================
+const btnSubmitCartWhatsApp = document.getElementById('btnSubmitCartWhatsApp');
+if (btnSubmitCartWhatsApp) {
+  btnSubmitCartWhatsApp.addEventListener('click', () => {
+    if (cart.length === 0) {
+      showToast('Coșul tău este gol! Te rugăm să configurezi un burger.');
+      return;
+    }
+
+    const loc = LOCATIONS[selectedLocationKey] || LOCATIONS.bistrita;
+    const name = document.getElementById('cartCustomerName')?.value.trim() || 'Client';
+    const phone = document.getElementById('cartCustomerPhone')?.value.trim() || '';
+    const orderType = document.getElementById('cartOrderTypeSelect')?.value || 'Ridicare din restaurant';
+    const address = document.getElementById('cartCustomerAddress')?.value.trim() || '';
+    const notes = document.getElementById('cartCustomerNotes')?.value.trim() || '';
+
+    // Validate delivery address if delivery chosen
+    if (orderType === 'Livrare la domiciliu' && !address) {
+      showToast('Te rugăm să completezi adresa de livrare!');
+      document.getElementById('cartCustomerAddress')?.focus();
+      return;
+    }
+
+    const totalBurgers = cart.reduce((acc, it) => acc + it.quantity, 0);
+
+    let msg = `🍔 *COMANDĂ NOUĂ PRIME BURGER (${loc.city.toUpperCase()})*\n`;
+    msg += `🌐 *Subdomeniu:* https://${loc.subdomain}\n`;
+    if (userLocation && userLocation.key === selectedLocationKey) {
+      msg += `📍 *Distanță GPS estimată:* ~${userLocation.distanceKm} km (${userLocation.isWithin10km ? 'în raza de 10 km' : 'peste 10 km'})\n`;
+    }
+    msg += `\n━━━━━━━━━━━━━━━━━━━━\n`;
+    msg += `📋 *PRODUSE COMANDATE (${totalBurgers} ${totalBurgers === 1 ? 'BURGER' : 'BURGERI'}):*\n\n`;
+
+    cart.forEach((item, idx) => {
+      msg += `*${idx + 1}. ${item.name.toUpperCase()}* (x${item.quantity})\n`;
+      msg += `   • Carne: ${item.patty}\n`;
+      msg += `   • Garnitură: ${item.side}\n`;
+      const saucesStr = item.sauces.length > 0 ? item.sauces.map(s => s.name).join(', ') : 'Fără sosuri';
+      msg += `   • Sosuri: ${saucesStr}\n`;
+      const drinksStr = item.drinks.length > 0 ? item.drinks.map(d => d.name).join(', ') : 'Fără băutură';
+      msg += `   • Băutură: ${drinksStr}\n`;
+      if (item.notes) {
+        msg += `   • Mențiuni speciale: ${item.notes}\n`;
+      }
+      msg += `\n`;
     });
 
-    // Initialize default view
-    document.addEventListener('DOMContentLoaded', () => {
-      updateSubdomainView(selectedLocationKey);
-    });
+    msg += `━━━━━━━━━━━━━━━━━━━━\n`;
+    msg += `👤 *DETALII CLIENT & PRELUARE:*\n`;
+    msg += `• Nume: ${name}\n`;
+    if (phone) msg += `• Telefon contact: ${phone}\n`;
+    msg += `• Modalitate: ${orderType}\n`;
+    if (orderType === 'Livrare la domiciliu' && address) {
+      msg += `• Adresă livrare: ${address}\n`;
+    }
+    if (notes) {
+      msg += `• Mențiuni generale: ${notes}\n`;
+    }
+    msg += `\n_Comandă generată direct pe platforma oficială Prime Burger România._`;
+
+    const encodedMsg = encodeURIComponent(msg);
+    const whatsappUrl = `https://wa.me/4${loc.phone}?text=${encodedMsg}`;
+
+    window.open(whatsappUrl, '_blank');
+    closeCartModal();
+    showToast(`Comanda ta (${totalBurgers} burgeri) a fost transmisă pe WhatsApp către restaurantul din ${loc.city}!`);
+  });
+}
+
+// ==========================================
+// 7. FRANCHISE APPLICATION SUBMISSION
+// ==========================================
+const franchiseForm = document.getElementById('franchiseApplicationForm');
+if (franchiseForm) {
+  franchiseForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('applicantName').value;
+    const phone = document.getElementById('applicantPhone').value;
+    const city = document.getElementById('applicantCity').value;
+    const budget = document.getElementById('applicantBudget').value;
+
+    showToast(`Mulțumim, ${name}! Solicitarea pentru franciza din ${city} (buget ${budget}) a fost înregistrată.`);
+    franchiseForm.reset();
+  });
+}
+
+// 8. FREE INFO PACK DOWNLOAD FORM
+const infoPackForm = document.getElementById('infoPackForm');
+if (infoPackForm) {
+  infoPackForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('infoPackName').value.trim();
+    const phone = document.getElementById('infoPackPhone').value.trim();
+    const city = document.getElementById('infoPackCity').value.trim();
+
+    showToast(`Mulțumim, ${name}! Ghidul Oficial al Francizei pentru ${city} se descarcă acum.`);
+
+    const msg = encodeURIComponent(`Bună ziua! Mă numesc ${name} (Tel: ${phone}) și doresc Pachetul Informativ complet pentru deschiderea unei francize Prime Burger în orașul ${city}.`);
+    setTimeout(() => {
+      window.open(`https://wa.me/40746064310?text=${msg}`, '_blank');
+    }, 1200);
+
+    infoPackForm.reset();
+  });
+}
+
+// Toast notification helper
+function showToast(text) {
+  const toast = document.getElementById('toastBox');
+  const toastText = document.getElementById('toastText');
+  if (toast && toastText) {
+    toastText.textContent = text;
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 5000);
+  }
+}
+
+// Global scope bindings
+window.openOrderModal = openOrderModal;
+window.closeOrderModal = closeOrderModal;
+window.openCartModal = openCartModal;
+window.closeCartModal = closeCartModal;
+window.removeCartItem = removeCartItem;
+window.updateCartItemQty = updateCartItemQty;
+window.scrollToMenu = scrollToMenu;
+window.detectUserLocation = detectUserLocation;
+window.handleOrderCtaClick = handleOrderCtaClick;
+
+// Close modals when clicking outside sheet
+if (orderModal) {
+  orderModal.addEventListener('click', (e) => {
+    if (e.target === orderModal) closeOrderModal();
+  });
+}
+
+if (cartModal) {
+  cartModal.addEventListener('click', (e) => {
+    if (e.target === cartModal) closeCartModal();
+  });
+}
+
+// Attach header order CTA button
+const headerOrderBtn = document.getElementById('headerOrderBtn');
+if (headerOrderBtn) {
+  headerOrderBtn.addEventListener('click', handleOrderCtaClick);
+}
+
+// Initialize on DOM load
+document.addEventListener('DOMContentLoaded', () => {
+  populateLocationDropdowns();
+  updateSubdomainView(selectedLocationKey);
+});

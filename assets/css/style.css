@@ -2277,3 +2277,454 @@ textarea.form-control {
     padding: 24px 16px;
   }
 }
+
+/* ==========================================
+   SMART GEO-TRACKING & 10 KM RADIUS BAR
+   ========================================== */
+.geo-location-bar {
+  background: #191820;
+  border: 1px solid rgba(255, 194, 34, 0.28);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-bottom: 32px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.geo-bar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.geo-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  min-width: 280px;
+}
+
+.geo-bar-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 194, 34, 0.12);
+  border: 1px solid var(--border-accent);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.geo-bar-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.geo-bar-kicker {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.geo-city-select-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.geo-city-dropdown {
+  background: #121116;
+  border: 1px solid var(--border-color);
+  color: #FFFFFF;
+  padding: 7px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  transition: var(--transition);
+  max-width: 320px;
+}
+
+.geo-city-dropdown:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 10px rgba(255, 194, 34, 0.25);
+}
+
+.geo-service-badge {
+  font-size: 0.74rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.02em;
+}
+
+.geo-service-badge.badge-delivery {
+  background: rgba(52, 211, 153, 0.15);
+  border: 1px solid rgba(52, 211, 153, 0.4);
+  color: #34d399;
+}
+
+.geo-service-badge.badge-pickup {
+  background: rgba(255, 194, 34, 0.15);
+  border: 1px solid rgba(255, 194, 34, 0.4);
+  color: #FFC222;
+}
+
+.geo-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-geo-detect {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  color: #FFFFFF;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+}
+
+.btn-geo-detect:hover {
+  background: rgba(255, 194, 34, 0.12);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.btn-geo-detect.loading {
+  pointer-events: none;
+  opacity: 0.85;
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.geo-distance-tag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.geo-distance-tag.in-radius {
+  background: rgba(52, 211, 153, 0.15);
+  border: 1px solid #34d399;
+  color: #34d399;
+}
+
+.geo-distance-tag.out-radius {
+  background: rgba(255, 194, 34, 0.15);
+  border: 1px solid #FFC222;
+  color: #FFC222;
+}
+
+.geo-distance-tag.manual-mode {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+}
+
+.geo-bar-notice {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ==========================================
+   FLOATING CART BAR (STICKY BOTTOM)
+   ========================================== */
+.floating-cart-bar {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 32px);
+  max-width: 680px;
+  z-index: 150;
+  background: rgba(24, 23, 30, 0.94);
+  border: 1px solid var(--border-accent);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.75), 0 0 20px rgba(255, 194, 34, 0.2);
+  border-radius: 16px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 12px 18px;
+  animation: slideUpFloatingCart 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUpFloatingCart {
+  from {
+    transform: translate(-50%, 60px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+.floating-cart-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.cart-bar-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cart-bar-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #121114;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(255, 194, 34, 0.4);
+}
+
+.cart-bar-heading {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.98rem;
+  color: #FFFFFF;
+}
+
+.cart-bar-sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.modal-actions-duo {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ==========================================
+   MULTI-BURGER CART MODAL STYLES
+   ========================================== */
+.cart-items-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.cart-item-card {
+  background: #141318;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 12px 14px;
+  transition: var(--transition);
+}
+
+.cart-item-card:hover {
+  border-color: rgba(255, 194, 34, 0.3);
+}
+
+.cart-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.cart-item-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cart-item-idx {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 194, 34, 0.15);
+  color: var(--primary);
+  font-size: 0.72rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-item-name {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.btn-remove-cart-item {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  padding: 4px 6px;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  transition: var(--transition);
+}
+
+.btn-remove-cart-item:hover {
+  color: #EF4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.cart-item-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.cart-spec-pill {
+  font-size: 0.72rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 2px 8px;
+  border-radius: 12px;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cart-spec-pill i {
+  color: var(--primary);
+  font-size: 0.68rem;
+}
+
+.cart-spec-pill.note-pill {
+  border-color: rgba(255, 194, 34, 0.3);
+  color: var(--primary);
+}
+
+.cart-item-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cart-qty-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #1D1C24;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 2px 4px;
+}
+
+.qty-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  color: #FFFFFF;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.qty-btn:hover {
+  background: var(--primary);
+  color: #121114;
+}
+
+.qty-val {
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: #FFFFFF;
+  min-width: 18px;
+  text-align: center;
+}
+
+.cart-geo-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-dim);
+}
+
+.cart-geo-badge.badge-ok {
+  background: rgba(52, 211, 153, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+.cart-geo-badge.badge-warn {
+  background: rgba(255, 194, 34, 0.15);
+  color: #FFC222;
+  border: 1px solid rgba(255, 194, 34, 0.3);
+}
+
+@media (max-width: 768px) {
+  .geo-bar-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .geo-city-dropdown {
+    max-width: 100%;
+    width: 100%;
+  }
+  .floating-cart-bar {
+    bottom: 12px;
+    width: calc(100% - 20px);
+    padding: 10px 14px;
+  }
+  .modal-actions-duo {
+    width: 100%;
+    justify-content: stretch;
+  }
+  .modal-actions-duo button {
+    flex: 1;
+    font-size: 0.84rem;
+    padding: 10px 12px;
+  }
+}
