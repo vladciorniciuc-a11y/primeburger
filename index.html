@@ -1333,23 +1333,28 @@
 
       <!-- Sticky Footer Total & Action -->
       <div class="modal-footer-sticky cart-modal-footer">
-        <div class="modal-total-wrap" id="cartModalTotalSection">
-          <div id="cartFooterDeliveryBadge" style="font-size:0.76rem; color:#34d399; font-weight:700; margin-bottom:2px;">
-            <i class="fas fa-shopping-bag"></i> Ridicare din restaurant (La pachet)
+        <!-- Rând principal: Total de Plată & Buton WhatsApp -->
+        <div class="cart-footer-main-row">
+          <div class="modal-total-wrap" id="cartModalTotalSection">
+            <div id="cartFooterDeliveryBadge" style="font-size:0.76rem; color:#34d399; font-weight:700; margin-bottom:2px;">
+              <i class="fas fa-shopping-bag"></i> Ridicare din restaurant (La pachet)
+            </div>
+            <div style="display:flex; align-items:baseline; gap:6px;">
+              <span style="font-size:0.85rem; color:var(--text-muted); font-weight:600;">Total de Plată:</span>
+              <strong id="cartFooterTotalText" style="color:var(--primary); font-size:1.45rem; font-family:var(--font-heading); font-weight:900;">0 LEI</strong>
+            </div>
+            <small id="cartFooterCount" style="color:var(--text-dim); font-size:0.75rem;">(0 burgeri selectați)</small>
           </div>
-          <div style="display:flex; align-items:baseline; gap:6px;">
-            <span style="font-size:0.85rem; color:var(--text-muted); font-weight:600;">Total de Plată:</span>
-            <strong id="cartFooterTotalText" style="color:var(--primary); font-size:1.45rem; font-family:var(--font-heading); font-weight:900;">0 LEI</strong>
-          </div>
-          <small id="cartFooterCount" style="color:var(--text-dim); font-size:0.75rem;">(0 burgeri selectați)</small>
+
+          <button type="button" class="btn btn-green btn-submit-whatsapp-lg" id="btnSubmitCartWhatsApp">
+            <i class="fab fa-whatsapp"></i> Trimite Comanda pe WhatsApp
+          </button>
         </div>
 
-        <div class="modal-footer-actions">
-          <button type="button" class="btn-cancel-modal" onclick="cancelEntireOrder()" title="Anulează comanda și golește coșul">
-            <i class="fas fa-trash-alt"></i> Anulează Comanda
-          </button>
-          <button type="button" class="btn btn-green" id="btnSubmitCartWhatsApp">
-            <i class="fab fa-whatsapp"></i> Trimite Comanda pe WhatsApp
+        <!-- Rând dedicat CENTRAT: Buton Anulare Comandă -->
+        <div class="cart-footer-cancel-row">
+          <button type="button" class="btn-cancel-modal-centered" onclick="cancelEntireOrder()" title="Anulează comanda și golește coșul">
+            <i class="fas fa-trash-alt"></i> Anulează Comanda (Golește Coșul)
           </button>
         </div>
       </div>
