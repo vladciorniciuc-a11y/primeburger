@@ -739,12 +739,22 @@ function renderCart() {
           ? item.drinks.map(d => d.name).join(', ') 
           : 'Fără băutură';
 
+        const isBurgerItem = item.isBurger !== false && item.patty && item.patty !== '-';
+        const specsHtml = isBurgerItem ? `
+          <div class="cart-item-specs">
+            <div class="cart-spec-pill"><i class="fas fa-drumstick-bite"></i> ${item.patty}</div>
+            <div class="cart-spec-pill"><i class="fas fa-utensils"></i> ${item.side}</div>
+            <div class="cart-spec-pill"><i class="fas fa-mortar-pestle"></i> ${saucesStr}</div>
+            <div class="cart-spec-pill"><i class="fas fa-glass-cheers"></i> ${drinksStr}</div>
+            ${item.notes ? `<div class="cart-spec-pill note-pill"><i class="fas fa-comment-dots"></i> ${item.notes}</div>` : ''}
+          </div>
+        ` : (item.notes ? `<div class="cart-item-specs"><div class="cart-spec-pill note-pill"><i class="fas fa-comment-dots"></i> ${item.notes}</div></div>` : '');
+
         return `
           <div class="cart-item-card">
             <div class="cart-item-main-row">
-              <!-- Imagine Produs: EXCLUSIV LA BURGER -->
               <div class="cart-burger-thumb-wrap">
-                <img src="${item.image}" alt="${item.name}" class="cart-burger-thumb-img">
+                <img src="${item.image}" alt="${item.name}" class="cart-burger-thumb-img" onerror="this.src='assets/images/prime-burger.png'">
               </div>
 
               <div class="cart-item-details">
@@ -753,21 +763,15 @@ function renderCart() {
                     <span class="cart-item-idx">${index + 1}</span>
                     <div>
                       <h4 class="cart-item-name">${item.name}</h4>
-                      <span class="cart-item-price-tag">${item.totalPrice} LEI / porție</span>
+                      <span class="cart-item-price-tag">${item.totalPrice} LEI / buc</span>
                     </div>
                   </div>
-                  <button type="button" class="btn-remove-cart-item" onclick="removeCartItem(${item.id})" title="Șterge acest burger" aria-label="Șterge burger">
+                  <button type="button" class="btn-remove-cart-item" onclick="removeCartItem(${item.id})" title="Șterge produs" aria-label="Șterge produs">
                     <i class="fas fa-trash-alt"></i>
                   </button>
                 </div>
                 
-                <div class="cart-item-specs">
-                  <div class="cart-spec-pill"><i class="fas fa-drumstick-bite"></i> ${item.patty}</div>
-                  <div class="cart-spec-pill"><i class="fas fa-utensils"></i> ${item.side}</div>
-                  <div class="cart-spec-pill"><i class="fas fa-mortar-pestle"></i> ${saucesStr}</div>
-                  <div class="cart-spec-pill"><i class="fas fa-glass-cheers"></i> ${drinksStr}</div>
-                  ${item.notes ? `<div class="cart-spec-pill note-pill"><i class="fas fa-comment-dots"></i> ${item.notes}</div>` : ''}
-                </div>
+                ${specsHtml}
 
                 <div class="cart-item-footer">
                   <div class="cart-subtotal-val">
@@ -888,17 +892,19 @@ if (btnSubmitCartWhatsApp) {
       msg += `📍 *Distanță GPS estimată:* ~${userLocation.distanceKm} km (${userLocation.isWithin10km ? 'în raza de 10 km' : 'peste 10 km'})\n`;
     }
     msg += `\n━━━━━━━━━━━━━━━━━━━━\n`;
-    msg += `📋 *PRODUSE COMANDATE (${totalBurgers} ${totalBurgers === 1 ? 'BURGER' : 'BURGERI'}):*\n\n`;
+    msg += `📋 *PRODUSE COMANDATE (${totalBurgers} ${totalBurgers === 1 ? 'PRODUS' : 'PRODUSE'}):*\n\n`;
 
     cart.forEach((item, idx) => {
       const subtotal = item.totalPrice * item.quantity;
       msg += `*${idx + 1}. ${item.name.toUpperCase()}* (x${item.quantity}) - *${subtotal} LEI*\n`;
-      msg += `   • Carne: ${item.patty}\n`;
-      msg += `   • Garnitură: ${item.side}\n`;
-      const saucesStr = item.sauces.length > 0 ? item.sauces.map(s => s.name).join(', ') : 'Fără sosuri';
-      msg += `   • Sosuri: ${saucesStr}\n`;
-      const drinksStr = item.drinks.length > 0 ? item.drinks.map(d => d.name).join(', ') : 'Fără băutură';
-      msg += `   • Băutură: ${drinksStr}\n`;
+      if (item.isBurger !== false && item.patty && item.patty !== '-') {
+        msg += `   • Carne: ${item.patty}\n`;
+        msg += `   • Garnitură: ${item.side}\n`;
+        const saucesStr = item.sauces.length > 0 ? item.sauces.map(s => s.name).join(', ') : 'Fără sosuri';
+        msg += `   • Sosuri: ${saucesStr}\n`;
+        const drinksStr = item.drinks.length > 0 ? item.drinks.map(d => d.name).join(', ') : 'Fără băutură';
+        msg += `   • Băutură: ${drinksStr}\n`;
+      }
       if (item.notes) {
         msg += `   • Mențiuni speciale: ${item.notes}\n`;
       }
@@ -925,7 +931,7 @@ if (btnSubmitCartWhatsApp) {
 
     window.open(whatsappUrl, '_blank');
     closeCartModal();
-    showToast(`Comanda ta (${totalBurgers} burgeri - ${totalOrderPrice} LEI) a fost transmisă pe WhatsApp către restaurantul din ${loc.city}!`);
+    showToast(`Comanda ta (${totalBurgers} ${totalBurgers === 1 ? 'produs' : 'produse'} - ${totalOrderPrice} LEI) a fost transmisă pe WhatsApp către restaurantul din ${loc.city}!`);
   });
 }
 
@@ -1257,8 +1263,8 @@ function handlePredefinedChat(type) {
     let extraButtons = '';
     if (type === 'allergens') {
       extraButtons = `
-        <a href="assets/docs/ValoriNutritionale_Alergeni.pdf" target="_blank" download class="chat-action-wa-btn" style="background:#374151; margin-right:6px;">
-          <i class="fas fa-file-pdf"></i> Descarcă Fișa PDF
+        <a href="assets/docs/ValoriNutritionalesiListadealergenidecembrie.pdf" target="_blank" download class="chat-action-wa-btn" style="background:#374151; margin-right:6px;">
+          <i class="fas fa-file-pdf"></i> Descarcă Fișa PDF Decembrie
         </a>
       `;
     }
@@ -1348,6 +1354,96 @@ function handleCustomChatSend(event) {
   }, 400);
 }
 
+// ==========================================
+// 11. FULL EXTENDED CATALOG CONTROLLER (50 PRODUSE)
+// ==========================================
+let currentCatalogCategory = 'all';
+
+function renderCatalog(filterCategory = 'all') {
+  const grid = document.getElementById('catalogProductsGrid');
+  if (!grid || typeof PB_CATALOG === 'undefined') return;
+
+  currentCatalogCategory = filterCategory;
+
+  const products = filterCategory === 'all' 
+    ? PB_CATALOG 
+    : PB_CATALOG.filter(p => p.category === filterCategory);
+
+  grid.innerHTML = products.map(p => {
+    const allergensStr = p.allergens && p.allergens.length > 0
+      ? `<div class="burger-allergens-strip" style="margin:6px 0 10px 0; padding:4px 8px;">
+          <span class="allergens-title"><i class="fas fa-exclamation-triangle"></i></span>
+          ${p.allergens.map(a => `<span class="allergen-tag">${a}</span>`).join('')}
+         </div>`
+      : '';
+
+    const actionBtn = p.isBurger
+      ? `<button type="button" class="btn btn-primary btn-sm btn-block" onclick="openOrderModal('${p.name}', ${p.price}, '${p.slug}')" style="width:100%; justify-content:center;">
+          <i class="fas fa-sliders-h"></i> Configurează (${p.price} LEI)
+         </button>`
+      : `<button type="button" class="btn-gold-outline" onclick="addDirectCatalogItem('${p.slug}')">
+          <i class="fas fa-plus"></i> Adaugă în Comandă (${p.price} LEI)
+         </button>`;
+
+    return `
+      <div class="catalog-product-card" data-category="${p.category}">
+        <div class="catalog-card-media">
+          <img src="${p.image}" alt="${p.name}" class="catalog-card-img" loading="lazy" onerror="this.src='assets/images/prime-burger.png'">
+          <span class="catalog-cat-badge">${p.category}</span>
+        </div>
+        <div class="catalog-card-body">
+          <div class="catalog-card-header">
+            <h4 class="catalog-prod-name">${p.name}</h4>
+            <span class="catalog-prod-price">${p.price} LEI</span>
+          </div>
+          <p class="catalog-prod-desc">${p.description || 'Preparat artizanal realizat proaspăt din ingrediente atent selecționate.'}</p>
+          ${allergensStr}
+        </div>
+        <div class="catalog-card-action">
+          ${actionBtn}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function initCatalogTabs() {
+  const tabs = document.querySelectorAll('.catalog-tab-btn');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const cat = tab.dataset.category || 'all';
+      renderCatalog(cat);
+    });
+  });
+}
+
+function addDirectCatalogItem(slug) {
+  if (typeof PB_CATALOG === 'undefined') return;
+  const product = PB_CATALOG.find(p => p.slug === slug);
+  if (!product) return;
+
+  const item = {
+    id: Date.now() + Math.floor(Math.random() * 1000),
+    name: product.name,
+    image: product.image,
+    isBurger: false,
+    patty: '-',
+    side: '-',
+    sauces: [],
+    drinks: [],
+    notes: '',
+    unitPrice: product.price,
+    totalPrice: product.price,
+    quantity: 1
+  };
+
+  cart.push(item);
+  renderCart();
+  showToast(`🛒 ${product.name} (${product.price} LEI) a fost adăugat în comandă!`);
+}
+
 window.updateCartItemQty = updateCartItemQty;
 window.scrollToMenu = scrollToMenu;
 window.detectUserLocation = detectUserLocation;
@@ -1359,6 +1455,9 @@ window.updateCartDeliveryUI = updateCartDeliveryUI;
 window.togglePrimeChat = togglePrimeChat;
 window.handlePredefinedChat = handlePredefinedChat;
 window.handleCustomChatSend = handleCustomChatSend;
+window.renderCatalog = renderCatalog;
+window.initCatalogTabs = initCatalogTabs;
+window.addDirectCatalogItem = addDirectCatalogItem;
 
 // Close modals when clicking outside sheet
 if (orderModal) {
@@ -1401,4 +1500,6 @@ if (headerOrderBtn) {
 document.addEventListener('DOMContentLoaded', () => {
   populateLocationDropdowns();
   updateSubdomainView(selectedLocationKey);
+  renderCatalog('all');
+  initCatalogTabs();
 });

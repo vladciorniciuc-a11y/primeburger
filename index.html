@@ -683,6 +683,55 @@
           </button>
         </article>
       </div>
+
+      <!-- ==========================================
+           FULL INTERACTIVE CATALOG (TOATE CELE 50 PRODUSE)
+           ========================================== -->
+      <div class="full-catalog-wrap" id="catalogComplet">
+        <div class="catalog-section-header">
+          <div class="catalog-title-col">
+            <span class="section-kicker"><i class="fas fa-utensils" style="color:var(--primary); margin-right:4px;"></i> MENIU EXTINS OFICIAL</span>
+            <h3 class="catalog-main-title">Meniul Complet Prime Burger (50 Preparate)</h3>
+            <p class="catalog-main-desc">Rețete autentice din ingrediente premium din Hub-ul Central Dumbrăveni. Alege categoria și adaugă preparatul dorit direct în comanda ta:</p>
+          </div>
+        </div>
+
+        <!-- Filter Tabs Navigation -->
+        <div class="catalog-tabs-nav" id="catalogTabsNav" role="tablist">
+          <button type="button" class="catalog-tab-btn active" data-category="all">
+            <i class="fas fa-th-large"></i> Toate (50)
+          </button>
+          <button type="button" class="catalog-tab-btn" data-category="Burgers">
+            <i class="fas fa-hamburger"></i> Burgeri (9)
+          </button>
+          <button type="button" class="catalog-tab-btn" data-category="Meniuri">
+            <i class="fas fa-box-open"></i> Meniuri Combo (14)
+          </button>
+          <button type="button" class="catalog-tab-btn" data-category="Pui">
+            <i class="fas fa-drumstick-bite"></i> Pui & Crispy (5)
+          </button>
+          <button type="button" class="catalog-tab-btn" data-category="Hot-Dogs">
+            <i class="fas fa-hotdog"></i> Hot-Dogs (2)
+          </button>
+          <button type="button" class="catalog-tab-btn" data-category="Cartofi">
+            <i class="fas fa-french-fries"></i> Cartofi (2)
+          </button>
+          <button type="button" class="catalog-tab-btn" data-category="Sides">
+            <i class="fas fa-leaf"></i> Salate & Wraps (3)
+          </button>
+          <button type="button" class="catalog-tab-btn" data-category="Sauces">
+            <i class="fas fa-mortar-pestle"></i> Sosuri (8)
+          </button>
+          <button type="button" class="catalog-tab-btn" data-category="Drinks">
+            <i class="fas fa-wine-bottle"></i> Băuturi (7)
+          </button>
+        </div>
+
+        <!-- Products Grid Container -->
+        <div class="catalog-products-grid" id="catalogProductsGrid">
+          <!-- Populated dynamically by JS from PB_CATALOG -->
+        </div>
+      </div>
     </div>
   </section>
 
@@ -734,9 +783,14 @@
             Respectăm standardele europene și oferim clienților noștri toate detaliile despre ingrediente, calorii, macro-nutrienți și alergeni pentru fiecare preparat din meniul Prime Burger.
           </p>
         </div>
-        <a href="assets/docs/ValoriNutritionale_Alergeni.pdf" target="_blank" class="btn btn-outline" download>
-          <i class="fas fa-download"></i> Descarcă Fișa Oficială (PDF)
-        </a>
+        <div style="display:flex; flex-wrap:wrap; gap:10px;">
+          <a href="assets/docs/ValoriNutritionalesiListadealergenidecembrie.pdf" target="_blank" class="btn btn-primary" download>
+            <i class="fas fa-download"></i> Descarcă Lista Alergeni (PDF Decembrie)
+          </a>
+          <a href="assets/docs/ValoriNutritionale_Alergeni.pdf" target="_blank" class="btn btn-outline" download>
+            <i class="fas fa-file-pdf"></i> Ghid Nutrițional (PDF)
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -1071,7 +1125,7 @@
             <li><a href="#harta">Harta României & Locații</a></li>
             <li><a href="#meniu">Meniu Cei 2 Burgeri</a></li>
             <li><a href="#subdomenii">Platforma Subdomenii Franciză</a></li>
-            <li><a href="assets/docs/ValoriNutritionale_Alergeni.pdf" target="_blank" rel="noopener">Valori Nutriționale & Alergeni (PDF)</a></li>
+            <li><a href="assets/docs/ValoriNutritionalesiListadealergenidecembrie.pdf" target="_blank" rel="noopener">Valori Nutriționale & Alergeni (PDF Decembrie)</a></li>
           </ul>
         </div>
 
@@ -1571,6 +1625,7 @@
   </div>
 
   <!-- APPLICATION SCRIPT -->
+  <script src="assets/js/catalog-data.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>
