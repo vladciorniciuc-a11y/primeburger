@@ -1417,6 +1417,109 @@
     </div>
   </div>
 
+  <!-- ==========================================
+       PRIME BURGER INTERACTIVE CHAT WIDGET
+       ========================================== -->
+  <div class="prime-chat-widget" id="primeChatWidget">
+    <!-- Chat Floating Trigger Button -->
+    <button type="button" class="prime-chat-trigger" id="primeChatTrigger" onclick="togglePrimeChat()" aria-label="Deschide Chat Suport și Franciză Prime Burger">
+      <div class="chat-trigger-avatar">
+        <i class="fab fa-whatsapp"></i>
+        <span class="chat-status-pulse"></span>
+      </div>
+      <div class="chat-trigger-text">
+        <span class="chat-trigger-title">Chat & Franciză</span>
+        <span class="chat-trigger-sub">🟢 Răspundem acum</span>
+      </div>
+    </button>
+
+    <!-- Chat Modal / Expanded Dialog Box -->
+    <div class="prime-chat-panel" id="primeChatPanel" role="dialog" aria-modal="true" aria-label="Asistență și Franciză Prime Burger">
+      <!-- Chat Header -->
+      <div class="prime-chat-header">
+        <div class="chat-header-brand">
+          <div class="chat-header-avatar">
+            <i class="fas fa-hamburger"></i>
+            <span class="header-status-dot"></span>
+          </div>
+          <div class="chat-header-meta">
+            <h4>Prime Burger Asistență</h4>
+            <p><span class="online-indicator"></span> Online • Franciză & Hub Central</p>
+          </div>
+        </div>
+        <button type="button" class="btn-chat-close" onclick="togglePrimeChat()" aria-label="Închide chat">&times;</button>
+      </div>
+
+      <!-- Chat Messages Body -->
+      <div class="prime-chat-body" id="primeChatBody">
+        <!-- System Greeting Bubble -->
+        <div class="chat-msg chat-msg-bot">
+          <div class="chat-bubble bot-bubble">
+            <p>Salut! 👋 Bine ai venit la <strong>Prime Burger</strong>.</p>
+            <p style="margin-top:6px; font-size:0.86rem; color:var(--text-muted);">Cum te putem ajuta astăzi? Alege una dintre opțiunile rapide sau scrie-ne direct pe WhatsApp:</p>
+          </div>
+          <span class="chat-timestamp">Acum</span>
+        </div>
+
+        <!-- Quick Predefined Interactive Options (Chips / Action Cards) -->
+        <div class="chat-quick-options" id="chatQuickOptions">
+          <span class="quick-options-label"><i class="fas fa-bolt" style="color:var(--primary); margin-right:4px;"></i> Alege o opțiune rapidă:</span>
+
+          <!-- Option 1: Franciză (USER'S EXPLICIT REQUEST) -->
+          <button type="button" class="chat-option-btn primary-chip" onclick="handlePredefinedChat('franchise')">
+            <div class="opt-icon"><i class="fas fa-store-alt"></i></div>
+            <div class="opt-content">
+              <span class="opt-badge">Franciză & Investiții</span>
+              <strong class="opt-text">Vrei mai multe informații pentru a decide dacă vrei să ai o astfel de franciză?</strong>
+            </div>
+            <i class="fas fa-arrow-right opt-arrow"></i>
+          </button>
+
+          <!-- Option 2: B2B Horeca / Carne (USER'S EXPLICIT REQUEST) -->
+          <button type="button" class="chat-option-btn primary-chip" onclick="handlePredefinedChat('b2b_meat')">
+            <div class="opt-icon"><i class="fas fa-drumstick-bite"></i></div>
+            <div class="opt-content">
+              <span class="opt-badge">B2B Horeca / Hub Carne</span>
+              <strong class="opt-text">Ai restaurant și vrei să afli mai multe despre preț și calitatea cărnii pe care o vindem?</strong>
+            </div>
+            <i class="fas fa-arrow-right opt-arrow"></i>
+          </button>
+
+          <!-- Option 3: Comandă Locală Mâncare -->
+          <button type="button" class="chat-option-btn secondary-chip" onclick="handlePredefinedChat('food_order')">
+            <div class="opt-icon"><i class="fas fa-hamburger"></i></div>
+            <div class="opt-content">
+              <span class="opt-badge">Comandă Mâncare</span>
+              <span class="opt-text">Vreau să comand burgeri la cel mai apropiat restaurant Prime Burger</span>
+            </div>
+            <i class="fas fa-arrow-right opt-arrow"></i>
+          </button>
+
+          <!-- Option 4: Catering & Evenimente -->
+          <button type="button" class="chat-option-btn secondary-chip" onclick="handlePredefinedChat('catering')">
+            <div class="opt-icon"><i class="fas fa-truck-pickup"></i></div>
+            <div class="opt-content">
+              <span class="opt-badge">Catering & Burger Van</span>
+              <span class="opt-text">Vreau o ofertă de catering / burger van pentru un eveniment</span>
+            </div>
+            <i class="fas fa-arrow-right opt-arrow"></i>
+          </button>
+        </div>
+
+        <!-- Dynamic User & Bot Replies will append here -->
+        <div id="chatDynamicFeed"></div>
+      </div>
+
+      <!-- Chat Footer / Input Form -->
+      <form class="prime-chat-footer" id="primeChatForm" onsubmit="handleCustomChatSend(event)">
+        <input type="text" id="chatCustomInput" class="chat-input" placeholder="Scrie mesajul tău aici..." autocomplete="off">
+        <button type="submit" class="btn-chat-send" id="btnChatSend" aria-label="Trimite pe WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
   <!-- BRANDED TOAST NOTIFICATION -->
   <div class="toast-box" id="toastBox">
     <div class="toast-brand-icon" id="toastBrandIcon">

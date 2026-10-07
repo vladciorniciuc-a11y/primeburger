@@ -1137,6 +1137,192 @@ window.closeLocationModal = closeLocationModal;
 window.confirmLocationAndOrder = confirmLocationAndOrder;
 window.confirmManualLocationModal = confirmManualLocationModal;
 window.removeCartItem = removeCartItem;
+// ==========================================
+// 10. INTERACTIVE PRIME BURGER CHAT WIDGET
+// ==========================================
+const primeChatPanel = document.getElementById('primeChatPanel');
+const primeChatTrigger = document.getElementById('primeChatTrigger');
+const chatDynamicFeed = document.getElementById('chatDynamicFeed');
+const chatBody = document.getElementById('primeChatBody');
+const chatCustomInput = document.getElementById('chatCustomInput');
+
+function togglePrimeChat() {
+  if (!primeChatPanel) return;
+  const isActive = primeChatPanel.classList.toggle('active');
+  if (isActive && chatCustomInput) {
+    setTimeout(() => chatCustomInput.focus(), 250);
+  }
+}
+
+function scrollToChatBottom() {
+  if (chatBody) {
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+}
+
+function handlePredefinedChat(type) {
+  if (!chatDynamicFeed) return;
+
+  const loc = LOCATIONS[selectedLocationKey] || LOCATIONS['bistrita'];
+  let userText = '';
+  let botReply = '';
+  let waNumber = '40746064310'; // Central Headquarters by default
+  let waMessage = '';
+  let btnLabel = 'Deschide WhatsApp';
+
+  switch (type) {
+    case 'franchise':
+      userText = 'Vreau mai multe informații pentru a decide dacă vreau să am o astfel de franciză Prime Burger.';
+      botReply = 'Excelent! Te punem în legătură directă cu <strong>Departamentul de Dezvoltare Francize Prime Burger</strong> (+40 746 064 310) pentru a primi Dosarul de Prezentare 2026, ghidul de investiție și analiza de profitabilitate.';
+      waNumber = '40746064310';
+      waMessage = 'Salut Prime Burger! Doresc mai multe informații pentru a decide dacă deschid o franciză Prime Burger în orașul meu. Vă rog să-mi trimiteți dosarul de prezentare și detaliile de colaborare.';
+      btnLabel = 'Continuă pe WhatsApp Franciză';
+      break;
+
+    case 'b2b_meat':
+      userText = 'Am restaurant și vreau să aflu mai multe despre preț și calitatea cărnii pe care o vindeți.';
+      botReply = 'Bun găsit! Hub-ul nostru central de procesare (Dumbrăveni, Suceava) livrează <strong>carne de vită maturată Black Angus</strong> porționată și chifle artizanale direct partenerilor Horeca. Te conectăm cu <strong>Directorul Comercial B2B</strong> (+40 746 064 310).';
+      waNumber = '40746064310';
+      waMessage = 'Salut Prime Burger! Administrez un restaurant și doresc detalii despre prețurile en-gros și calitatea cărnii de vită (și chiflelor) livrate prin Hub-ul vostru de la Dumbrăveni.';
+      btnLabel = 'Vorbește pe WhatsApp B2B';
+      break;
+
+    case 'food_order':
+      userText = `Vreau să comand burgeri la cel mai apropiat restaurant Prime Burger (${loc.city}).`;
+      botReply = `Te conectăm direct cu linia de comenzi rapide pentru <strong>Prime Burger ${loc.city}</strong> (${loc.formattedPhone}).`;
+      waNumber = `4${loc.phone}`;
+      waMessage = `Salut Prime Burger ${loc.city}! Doresc să plasez o comandă de burgeri.`;
+      btnLabel = `Comandă pe WhatsApp (${loc.city})`;
+      break;
+
+    case 'catering':
+      userText = 'Vreau o ofertă de catering / burger van pentru un eveniment privat sau corporate.';
+      botReply = 'Pentru petreceri private, festivaluri sau corporate, bucătăria noastră mobilă <strong>Prime Burger Van</strong> oferă gătit live la cele mai înalte standarde. Te conectăm cu echipa de evenimente (+40 746 064 310).';
+      waNumber = '40746064310';
+      waMessage = 'Salut Prime Burger! Doresc o ofertă pentru servicii de catering / burger van pentru un eveniment.';
+      btnLabel = 'Contact WhatsApp Evenimente';
+      break;
+
+    default:
+      userText = 'Bună ziua, doresc mai multe informații despre Prime Burger.';
+      botReply = 'Un reprezentant Prime Burger este gata să te ajute pe WhatsApp:';
+      waNumber = '40746064310';
+      waMessage = 'Salut! Aș dori câteva informații despre serviciile voastre.';
+  }
+
+  // 1. Append User Message Bubble
+  const userMsgEl = document.createElement('div');
+  userMsgEl.className = 'chat-msg chat-msg-user';
+  userMsgEl.innerHTML = `
+    <div class="chat-bubble user-bubble">
+      ${userText}
+    </div>
+    <span class="chat-timestamp">Acum</span>
+  `;
+  chatDynamicFeed.appendChild(userMsgEl);
+  scrollToChatBottom();
+
+  // 2. Append Typing Indicator
+  const typingEl = document.createElement('div');
+  typingEl.className = 'chat-msg chat-msg-bot';
+  typingEl.id = 'chatTypingIndicator';
+  typingEl.innerHTML = `
+    <div class="chat-bubble bot-bubble">
+      <div class="chat-typing-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  `;
+  chatDynamicFeed.appendChild(typingEl);
+  scrollToChatBottom();
+
+  // 3. After short delay, show bot reply and button
+  setTimeout(() => {
+    const indicator = document.getElementById('chatTypingIndicator');
+    if (indicator) indicator.remove();
+
+    const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage)}`;
+
+    const botMsgEl = document.createElement('div');
+    botMsgEl.className = 'chat-msg chat-msg-bot';
+    botMsgEl.innerHTML = `
+      <div class="chat-bubble bot-bubble">
+        <p>${botReply}</p>
+        <a href="${waUrl}" target="_blank" rel="noopener" class="chat-action-wa-btn">
+          <i class="fab fa-whatsapp"></i> ${btnLabel}
+        </a>
+      </div>
+      <span class="chat-timestamp">Acum</span>
+    `;
+    chatDynamicFeed.appendChild(botMsgEl);
+    scrollToChatBottom();
+
+    // Auto-open WhatsApp in new tab for seamless conversion
+    setTimeout(() => {
+      window.open(waUrl, '_blank');
+    }, 700);
+  }, 450);
+}
+
+function handleCustomChatSend(event) {
+  if (event) event.preventDefault();
+  if (!chatCustomInput || !chatDynamicFeed) return;
+
+  const rawText = chatCustomInput.value.trim();
+  if (!rawText) return;
+
+  chatCustomInput.value = '';
+
+  // Append user bubble
+  const userMsgEl = document.createElement('div');
+  userMsgEl.className = 'chat-msg chat-msg-user';
+  userMsgEl.innerHTML = `
+    <div class="chat-bubble user-bubble">${rawText}</div>
+    <span class="chat-timestamp">Acum</span>
+  `;
+  chatDynamicFeed.appendChild(userMsgEl);
+  scrollToChatBottom();
+
+  // Typing indicator
+  const typingEl = document.createElement('div');
+  typingEl.className = 'chat-msg chat-msg-bot';
+  typingEl.id = 'chatTypingIndicatorCustom';
+  typingEl.innerHTML = `
+    <div class="chat-bubble bot-bubble">
+      <div class="chat-typing-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  `;
+  chatDynamicFeed.appendChild(typingEl);
+  scrollToChatBottom();
+
+  setTimeout(() => {
+    const indicator = document.getElementById('chatTypingIndicatorCustom');
+    if (indicator) indicator.remove();
+
+    const waUrl = `https://wa.me/40746064310?text=${encodeURIComponent('Salut Prime Burger! ' + rawText)}`;
+
+    const botMsgEl = document.createElement('div');
+    botMsgEl.className = 'chat-msg chat-msg-bot';
+    botMsgEl.innerHTML = `
+      <div class="chat-bubble bot-bubble">
+        <p>Îți transmitem mesajul direct pe WhatsApp către echipa Prime Burger...</p>
+        <a href="${waUrl}" target="_blank" rel="noopener" class="chat-action-wa-btn">
+          <i class="fab fa-whatsapp"></i> Trimite acum pe WhatsApp
+        </a>
+      </div>
+      <span class="chat-timestamp">Acum</span>
+    `;
+    chatDynamicFeed.appendChild(botMsgEl);
+    scrollToChatBottom();
+
+    setTimeout(() => {
+      window.open(waUrl, '_blank');
+    }, 600);
+  }, 400);
+}
+
 window.updateCartItemQty = updateCartItemQty;
 window.scrollToMenu = scrollToMenu;
 window.detectUserLocation = detectUserLocation;
@@ -1145,6 +1331,9 @@ window.showToast = showToast;
 window.hideToast = hideToast;
 window.cancelEntireOrder = cancelEntireOrder;
 window.updateCartDeliveryUI = updateCartDeliveryUI;
+window.togglePrimeChat = togglePrimeChat;
+window.handlePredefinedChat = handlePredefinedChat;
+window.handleCustomChatSend = handleCustomChatSend;
 
 // Close modals when clicking outside sheet
 if (orderModal) {
@@ -1164,6 +1353,15 @@ if (locationModal) {
     if (e.target === locationModal) closeLocationModal();
   });
 }
+
+// Close chat when clicking outside panel
+document.addEventListener('click', (e) => {
+  if (primeChatPanel && primeChatPanel.classList.contains('active')) {
+    if (!primeChatPanel.contains(e.target) && !primeChatTrigger.contains(e.target)) {
+      primeChatPanel.classList.remove('active');
+    }
+  }
+});
 
 // Attach header order CTA button
 const headerOrderBtn = document.getElementById('headerOrderBtn');
