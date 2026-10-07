@@ -351,6 +351,7 @@ function handleOrderCtaClick(e) {
 const subdomainSelect = document.getElementById('subdomainSelect');
 const menuLocationSelect = document.getElementById('menuLocationSelect');
 const cartLocationSelect = document.getElementById('cartLocationSelect');
+const geoModalSelect = document.getElementById('geoModalSelect');
 const browserUrlPreview = document.getElementById('browserUrlPreview');
 const browserCityPreview = document.getElementById('browserCityPreview');
 const browserPhonePreview = document.getElementById('browserPhonePreview');
@@ -366,6 +367,7 @@ function updateSubdomainView(key) {
   if (subdomainSelect && subdomainSelect.value !== key) subdomainSelect.value = key;
   if (menuLocationSelect && menuLocationSelect.value !== key) menuLocationSelect.value = key;
   if (cartLocationSelect && cartLocationSelect.value !== key) cartLocationSelect.value = key;
+  if (geoModalSelect && geoModalSelect.value !== key) geoModalSelect.value = key;
 
   // Sync previews
   if (browserUrlPreview) browserUrlPreview.textContent = `https://${loc.subdomain}`;
@@ -415,6 +417,15 @@ function populateLocationDropdowns() {
     cartLocationSelect.innerHTML = optionsHtml;
     cartLocationSelect.value = selectedLocationKey;
     cartLocationSelect.addEventListener('change', (e) => {
+      updateSubdomainView(e.target.value);
+      updateGeoUI({ status: 'manual', key: e.target.value });
+    });
+  }
+
+  if (geoModalSelect) {
+    geoModalSelect.innerHTML = optionsHtml;
+    geoModalSelect.value = selectedLocationKey;
+    geoModalSelect.addEventListener('change', (e) => {
       updateSubdomainView(e.target.value);
       updateGeoUI({ status: 'manual', key: e.target.value });
     });
@@ -853,17 +864,165 @@ if (infoPackForm) {
   });
 }
 
-// Toast notification helper
-function showToast(text) {
+// ==========================================
+// 9. BRANDED LOCATION POPUP MODAL CONTROLLER
+// ==========================================
+const locationModal = document.getElementById('locationModal');
+const geoModalContentBox = document.getElementById('geoModalContentBox');
+
+function openLocationModal(triggerGps = true) {
+  if (locationModal) {
+    locationModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  if (triggerGps) {
+    renderLocationModalState('scanning');
+    detectUserLocation((res) => {
+      if (res) {
+        if (res.isWithin10km) {
+          renderLocationModalState('in_radius', res);
+        } else {
+          renderLocationModalState('out_radius', res);
+        }
+      } else {
+        renderLocationModalState('manual');
+      }
+    }, false);
+  } else {
+    if (userLocation) {
+      if (userLocation.isWithin10km) {
+        renderLocationModalState('in_radius', userLocation);
+      } else {
+        renderLocationModalState('out_radius', userLocation);
+      }
+    } else {
+      renderLocationModalState('manual');
+    }
+  }
+}
+
+function closeLocationModal() {
+  if (locationModal) {
+    locationModal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+function renderLocationModalState(state, data) {
+  if (!geoModalContentBox) return;
+
+  if (state === 'scanning') {
+    geoModalContentBox.innerHTML = `
+      <div class="geo-state-scanning">
+        <div class="geo-scan-spinner"><i class="fas fa-satellite fa-spin"></i></div>
+        <h4>Scanăm rețeaua națională Prime Burger...</h4>
+        <p>Căutăm cel mai apropiat restaurant și verificăm dacă te afli în raza de 10 km pentru livrare directă.</p>
+      </div>
+    `;
+  } else if (state === 'in_radius') {
+    const loc = LOCATIONS[data.key];
+    geoModalContentBox.innerHTML = `
+      <div class="geo-state-result in-radius-card">
+        <div class="geo-result-badge-top">
+          <span class="badge-status-pill green"><i class="fas fa-check-circle"></i> În Raza de Livrare (max 10 km)</span>
+          <span class="badge-distance-km">~${data.distanceKm} km</span>
+        </div>
+        <h4 class="geo-result-city">Prime Burger ${loc.city}</h4>
+        <div class="geo-result-subdomain">
+          <i class="fas fa-globe"></i> https://${loc.subdomain}
+        </div>
+        <div class="geo-result-services">
+          ${loc.hasDelivery 
+            ? '<span class="service-pill ok"><i class="fas fa-motorcycle"></i> Livrare La Domiciliu Disponibilă</span><span class="service-pill ok"><i class="fas fa-shopping-bag"></i> Ridicare / La Pachet</span>' 
+            : '<span class="service-pill warn"><i class="fas fa-store"></i> Exclusiv Ridicare din restaurant (La pachet)</span>'}
+        </div>
+        <div class="geo-result-schedule">
+          <i class="far fa-clock"></i> ${loc.hours} · <span style="color:#34d399; font-weight:700;">Deschis Acum</span>
+        </div>
+        <div class="geo-result-actions">
+          <button type="button" class="btn btn-green" onclick="confirmLocationAndOrder()">
+            <i class="fas fa-hamburger"></i> Comandă de la Prime Burger ${loc.city}
+          </button>
+        </div>
+      </div>
+    `;
+  } else if (state === 'out_radius') {
+    const loc = LOCATIONS[data.key];
+    geoModalContentBox.innerHTML = `
+      <div class="geo-state-result out-radius-card">
+        <div class="geo-result-badge-top">
+          <span class="badge-status-pill warn"><i class="fas fa-exclamation-triangle"></i> Peste Limita de Livrare (10 km)</span>
+          <span class="badge-distance-km">~${data.distanceKm} km</span>
+        </div>
+        <h4 class="geo-result-city">Cea mai apropiată locație: Prime Burger ${loc.city}</h4>
+        <p class="geo-result-explanation">
+          Te afli la <strong>${data.distanceKm} km</strong> distanță de restaurant. Pentru a garanta prospețimea cărnii rumenite pe plită, livrarea directă se efectuează în limita a <strong>10 km</strong>.
+        </p>
+        <div class="geo-result-takeaway-banner">
+          <i class="fas fa-info-circle"></i> Poți comanda cu <strong>Ridicare din restaurant (Takeaway)</strong> sau poți alege alt oraș din rețea!
+        </div>
+        <div class="geo-result-actions">
+          <button type="button" class="btn btn-primary" onclick="confirmLocationAndOrder()">
+            <i class="fas fa-shopping-bag"></i> Continuă cu Ridicare (Takeaway)
+          </button>
+        </div>
+      </div>
+    `;
+  } else if (state === 'manual') {
+    geoModalContentBox.innerHTML = `
+      <div class="geo-state-result">
+        <div class="geo-result-badge-top">
+          <span class="badge-status-pill neutral"><i class="fas fa-map-marker-alt"></i> Selectare Manuală</span>
+        </div>
+        <h4 class="geo-result-city">Alege Orașul Tău</h4>
+        <p class="geo-result-explanation">
+          Localizarea automată prin satelit este oprită sau indisponibilă. Alege orașul dorit din rețeaua Prime Burger România din selectorul de mai jos:
+        </p>
+      </div>
+    `;
+  }
+}
+
+function confirmLocationAndOrder() {
+  closeLocationModal();
+  scrollToMenu();
+  const loc = LOCATIONS[selectedLocationKey];
+  showToast(`Comanzi de la Prime Burger ${loc.city} (${loc.subdomain})`, 'Locație Confirmată');
+}
+
+function confirmManualLocationModal() {
+  if (geoModalSelect) {
+    const key = geoModalSelect.value;
+    updateSubdomainView(key);
+    updateGeoUI({ status: 'manual', key });
+    closeLocationModal();
+    scrollToMenu();
+    const loc = LOCATIONS[key];
+    showToast(`Ai selectat locația Prime Burger ${loc.city}`, 'Oraș Actualizat');
+  }
+}
+
+// Enhanced Toast Notification Helper
+let toastTimer = null;
+function showToast(text, title = 'Prime Burger România') {
   const toast = document.getElementById('toastBox');
   const toastText = document.getElementById('toastText');
+  const toastTitle = document.getElementById('toastTitle');
   if (toast && toastText) {
     toastText.textContent = text;
+    if (toastTitle) toastTitle.textContent = title;
     toast.classList.add('show');
-    setTimeout(() => {
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
       toast.classList.remove('show');
     }, 5000);
   }
+}
+
+function hideToast() {
+  const toast = document.getElementById('toastBox');
+  if (toast) toast.classList.remove('show');
 }
 
 // Global scope bindings
@@ -871,11 +1030,17 @@ window.openOrderModal = openOrderModal;
 window.closeOrderModal = closeOrderModal;
 window.openCartModal = openCartModal;
 window.closeCartModal = closeCartModal;
+window.openLocationModal = openLocationModal;
+window.closeLocationModal = closeLocationModal;
+window.confirmLocationAndOrder = confirmLocationAndOrder;
+window.confirmManualLocationModal = confirmManualLocationModal;
 window.removeCartItem = removeCartItem;
 window.updateCartItemQty = updateCartItemQty;
 window.scrollToMenu = scrollToMenu;
 window.detectUserLocation = detectUserLocation;
 window.handleOrderCtaClick = handleOrderCtaClick;
+window.showToast = showToast;
+window.hideToast = hideToast;
 
 // Close modals when clicking outside sheet
 if (orderModal) {
@@ -890,10 +1055,19 @@ if (cartModal) {
   });
 }
 
+if (locationModal) {
+  locationModal.addEventListener('click', (e) => {
+    if (e.target === locationModal) closeLocationModal();
+  });
+}
+
 // Attach header order CTA button
 const headerOrderBtn = document.getElementById('headerOrderBtn');
 if (headerOrderBtn) {
-  headerOrderBtn.addEventListener('click', handleOrderCtaClick);
+  headerOrderBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    openLocationModal(true);
+  });
 }
 
 // Initialize on DOM load

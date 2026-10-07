@@ -66,7 +66,7 @@
       </nav>
 
       <div class="header-actions">
-        <a href="#meniu" class="btn btn-primary btn-sm" id="headerOrderBtn">
+        <a href="#meniu" class="btn btn-primary btn-sm" id="headerOrderBtn" onclick="openLocationModal(true); return false;">
           <i class="fas fa-hamburger"></i> Comandă Acum
         </a>
         <a href="#franciza" class="btn btn-outline btn-sm">
@@ -93,7 +93,7 @@
         </p>
 
         <div class="hero-ctas">
-          <a href="#meniu" class="btn btn-primary" id="heroOrderBtn" onclick="handleOrderCtaClick(event)">
+          <a href="#meniu" class="btn btn-primary" id="heroOrderBtn" onclick="openLocationModal(true); return false;">
             <i class="fas fa-utensils"></i> Vezi Cei 2 Burgeri Vedetă
           </a>
           <a href="#harta" class="btn btn-outline">
@@ -574,7 +574,7 @@
             </div>
           </div>
           <div class="geo-bar-right">
-            <button type="button" class="btn-geo-detect" id="btnDetectGpsMenu" onclick="detectUserLocation(null, true)">
+            <button type="button" class="btn-geo-detect" id="btnDetectGpsMenu" onclick="openLocationModal(true)">
               <i class="fas fa-crosshairs"></i>
               <span>Găsește Cel Mai Apropiat Restaurant (GPS)</span>
             </button>
@@ -1309,10 +1309,72 @@
     </div>
   </div>
 
-  <!-- TOAST NOTIFICATION -->
+  <!-- BRANDED LOCATION POPUP MODAL (PRIME BURGER GEO-ROUTING) -->
+  <div class="order-modal location-modal" id="locationModal" role="dialog" aria-modal="true" aria-labelledby="geoModalTitle">
+    <div class="order-modal-sheet location-modal-sheet">
+      <!-- Modal Header with Brand Logo -->
+      <div class="location-modal-header">
+        <div class="location-brand-head">
+          <img src="assets/images/logo.png" alt="Prime Burger" class="location-modal-logo">
+          <div>
+            <span class="location-brand-tag"><i class="fas fa-crosshairs"></i> REȚEA NAȚIONALĂ · 11 LOCAȚII</span>
+            <h3 id="geoModalTitle">Cel Mai Apropiat Prime Burger</h3>
+          </div>
+        </div>
+        <button type="button" class="btn-modal-close" onclick="closeLocationModal()" aria-label="Închide">&times;</button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="location-modal-body">
+        <!-- Visual Radar Animation -->
+        <div class="geo-radar-animation">
+          <div class="radar-scan-circle radar-c3"></div>
+          <div class="radar-scan-circle radar-c2"></div>
+          <div class="radar-scan-circle radar-c1"></div>
+          <div class="radar-scan-center" id="radarCenterIcon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+        </div>
+
+        <!-- Dynamic State Box -->
+        <div id="geoModalContentBox" class="geo-modal-state-box">
+          <!-- Populated dynamically by JS -->
+        </div>
+
+        <!-- Manual City Fallback Selector -->
+        <div class="location-manual-box" id="locationManualBox">
+          <label class="form-label" for="geoModalSelect">Sau Alege Alt Oraș Din Rețea:</label>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:6px;">
+            <select id="geoModalSelect" class="form-control" style="flex:1; min-width:200px;">
+              <!-- Populated by JS from LOCATIONS -->
+            </select>
+            <button type="button" class="btn btn-primary" onclick="confirmManualLocationModal()" style="padding:10px 18px;">
+              <i class="fas fa-check"></i> Alege
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="location-modal-footer">
+        <div class="location-guarantee-note">
+          <i class="fas fa-shield-alt" style="color:var(--primary);"></i>
+          <span>Comenzile sunt transmise direct pe WhatsApp-ul bucătăriei selectate, fără comisioane intermediare.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BRANDED TOAST NOTIFICATION -->
   <div class="toast-box" id="toastBox">
-    <i class="fas fa-check-circle" style="color:#34d399; font-size:1.2rem;"></i>
-    <span id="toastText">Solicitarea ta a fost transmisă cu succes!</span>
+    <div class="toast-brand-icon" id="toastBrandIcon">
+      <i class="fas fa-map-marker-alt"></i>
+    </div>
+    <div class="toast-inner">
+      <strong class="toast-brand-title" id="toastTitle">Prime Burger România</strong>
+      <span id="toastText">Solicitarea ta a fost transmisă cu succes!</span>
+    </div>
+    <button type="button" class="btn-toast-close" onclick="hideToast()" aria-label="Închide notificare">&times;</button>
   </div>
 
   <!-- APPLICATION SCRIPT -->
