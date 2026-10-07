@@ -616,6 +616,16 @@
                 <span class="pill-tag"><i class="fas fa-mortar-pestle"></i> Sosul Casei</span>
               </div>
 
+              <!-- Alergeni Produs -->
+              <div class="burger-allergens-strip">
+                <span class="allergens-title"><i class="fas fa-exclamation-triangle"></i> Alergeni:</span>
+                <span class="allergen-tag">Gluten</span>
+                <span class="allergen-tag">Lactoză</span>
+                <span class="allergen-tag">Ou</span>
+                <span class="allergen-tag">Susan</span>
+                <span class="allergen-tag">Muștar</span>
+              </div>
+
               <div class="burger-card-pricing">
                 <span class="burger-price-val">39 LEI</span>
                 <span class="burger-price-sub">rețetă completă</span>
@@ -649,6 +659,16 @@
                 <span class="pill-tag"><i class="fas fa-drumstick-bite"></i> Dublu Vită 200g</span>
                 <span class="pill-tag"><i class="fas fa-bacon"></i> Bacon Crocant</span>
                 <span class="pill-tag"><i class="fas fa-cheese"></i> Dublu Cheddar</span>
+              </div>
+
+              <!-- Alergeni Produs -->
+              <div class="burger-allergens-strip">
+                <span class="allergens-title"><i class="fas fa-exclamation-triangle"></i> Alergeni:</span>
+                <span class="allergen-tag">Gluten</span>
+                <span class="allergen-tag">Lactoză</span>
+                <span class="allergen-tag">Ou</span>
+                <span class="allergen-tag">Susan</span>
+                <span class="allergen-tag">Muștar</span>
               </div>
 
               <div class="burger-card-pricing">
@@ -1086,6 +1106,14 @@
 
       <!-- Modal Content Steps -->
       <div class="modal-scroll-content">
+        <!-- Notă Alergeni & Siguranță Alimentară -->
+        <div class="modal-allergen-alert">
+          <i class="fas fa-exclamation-triangle"></i>
+          <div>
+            <strong>Informație Alergeni:</strong> Rețeta standard conține <em>Gluten, Lactoză, Ou, Susan, Muștar</em>. Pentru alergii severe sau excluderea vreunui ingredient, specifică la pasul 5 (Preferințe & Mențiuni).
+          </div>
+        </div>
+
         <!-- Step 1: Carne / Mărime -->
         <div class="step-box">
           <div class="step-box-header">
@@ -1443,8 +1471,8 @@
             <span class="header-status-dot"></span>
           </div>
           <div class="chat-header-meta">
-            <h4>Prime Burger Asistență</h4>
-            <p><span class="online-indicator"></span> Online • Franciză & Hub Central</p>
+            <h4>Prime Burger • Hub Dumbrăveni</h4>
+            <p><span class="online-indicator"></span> Online • Hub Producție Dumbrăveni & Francize</p>
           </div>
         </div>
         <button type="button" class="btn-chat-close" onclick="togglePrimeChat()" aria-label="Închide chat">&times;</button>
@@ -1475,12 +1503,12 @@
             <i class="fas fa-arrow-right opt-arrow"></i>
           </button>
 
-          <!-- Option 2: B2B Horeca / Carne (USER'S EXPLICIT REQUEST) -->
+          <!-- Option 2: B2B Horeca / Carne Hub Dumbrăveni (USER'S EXPLICIT REQUEST) -->
           <button type="button" class="chat-option-btn primary-chip" onclick="handlePredefinedChat('b2b_meat')">
             <div class="opt-icon"><i class="fas fa-drumstick-bite"></i></div>
             <div class="opt-content">
-              <span class="opt-badge">B2B Horeca / Hub Carne</span>
-              <strong class="opt-text">Ai restaurant și vrei să afli mai multe despre preț și calitatea cărnii pe care o vindem?</strong>
+              <span class="opt-badge">Hub Dumbrăveni / Carne B2B</span>
+              <strong class="opt-text">Ai restaurant și vrei să cumperi carne maturată Black Angus de la Hub-ul Dumbrăveni?</strong>
             </div>
             <i class="fas fa-arrow-right opt-arrow"></i>
           </button>
@@ -1495,12 +1523,22 @@
             <i class="fas fa-arrow-right opt-arrow"></i>
           </button>
 
-          <!-- Option 4: Catering & Evenimente -->
-          <button type="button" class="chat-option-btn secondary-chip" onclick="handlePredefinedChat('catering')">
-            <div class="opt-icon"><i class="fas fa-truck-pickup"></i></div>
+          <!-- Option 4: Furnizori Spații Comerciale (Propune o locație nouă) -->
+          <button type="button" class="chat-option-btn secondary-chip" onclick="handlePredefinedChat('commercial_space')">
+            <div class="opt-icon"><i class="fas fa-building"></i></div>
             <div class="opt-content">
-              <span class="opt-badge">Catering & Burger Van</span>
-              <span class="opt-text">Vreau o ofertă de catering / burger van pentru un eveniment</span>
+              <span class="opt-badge">Expansiune Rețea / Spații Comerciale</span>
+              <span class="opt-text">Deții un spațiu comercial și vrei să propui o locație nouă pentru Prime Burger?</span>
+            </div>
+            <i class="fas fa-arrow-right opt-arrow"></i>
+          </button>
+
+          <!-- Option 5: Alergeni & Valori Nutriționale -->
+          <button type="button" class="chat-option-btn secondary-chip" onclick="handlePredefinedChat('allergens')">
+            <div class="opt-icon"><i class="fas fa-exclamation-triangle" style="color:#f59e0b;"></i></div>
+            <div class="opt-content">
+              <span class="opt-badge" style="color:#f59e0b;">Siguranță & Alergeni</span>
+              <span class="opt-text">Ce alergeni conțin cei 2 burgeri (Signature & American Bacon)?</span>
             </div>
             <i class="fas fa-arrow-right opt-arrow"></i>
           </button>

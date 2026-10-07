@@ -1180,11 +1180,11 @@ function handlePredefinedChat(type) {
       break;
 
     case 'b2b_meat':
-      userText = 'Am restaurant și vreau să aflu mai multe despre preț și calitatea cărnii pe care o vindeți.';
-      botReply = 'Bun găsit! Hub-ul nostru central de procesare (Dumbrăveni, Suceava) livrează <strong>carne de vită maturată Black Angus</strong> porționată și chifle artizanale direct partenerilor Horeca. Te conectăm cu <strong>Directorul Comercial B2B</strong> (+40 746 064 310).';
+      userText = 'Am restaurant și vreau să aflu despre prețul și calitatea cărnii livrate de la Hub-ul Dumbrăveni.';
+      botReply = 'Bun găsit! Hub-ul nostru central de producție & logistică din <strong>Dumbrăveni (Suceava)</strong> procesează zilnic <strong>carne de vită maturată Black Angus</strong> porționată și chifle artizanale cu maia atât pentru rețeaua Prime Burger, cât și pentru restaurante partenere Horeca. Te conectăm direct cu <strong>Directorul Comercial de la Hub-ul Dumbrăveni</strong> (+40 746 064 310 / 0759 888 588).';
       waNumber = '40746064310';
-      waMessage = 'Salut Prime Burger! Administrez un restaurant și doresc detalii despre prețurile en-gros și calitatea cărnii de vită (și chiflelor) livrate prin Hub-ul vostru de la Dumbrăveni.';
-      btnLabel = 'Vorbește pe WhatsApp B2B';
+      waMessage = 'Salut Prime Burger! Administrez un restaurant și doresc detalii despre prețurile en-gros și calitatea cărnii de vită (și chiflelor) livrate prin Hub-ul Central Dumbrăveni.';
+      btnLabel = 'Vorbește cu Hub Dumbrăveni pe WhatsApp';
       break;
 
     case 'food_order':
@@ -1195,12 +1195,23 @@ function handlePredefinedChat(type) {
       btnLabel = `Comandă pe WhatsApp (${loc.city})`;
       break;
 
-    case 'catering':
-      userText = 'Vreau o ofertă de catering / burger van pentru un eveniment privat sau corporate.';
-      botReply = 'Pentru petreceri private, festivaluri sau corporate, bucătăria noastră mobilă <strong>Prime Burger Van</strong> oferă gătit live la cele mai înalte standarde. Te conectăm cu echipa de evenimente (+40 746 064 310).';
+    case 'commercial_space':
+      userText = 'Dețin / reprezint un spațiu comercial și aș dori să propun o nouă locație pentru Prime Burger.';
+      botReply = 'Mulțumim pentru interes! Rețeaua Prime Burger este în plină expansiune națională. Căutăm spații comerciale (40–120 mp, acces stradal / pietonal, vizibilitate excelentă). Te punem în legătură directă cu <strong>Departamentul de Expansiune & Locații</strong> (+40 746 064 310 / Hub Dumbrăveni) pe WhatsApp pentru a ne trimite detalii, suprafață și fotografii.';
       waNumber = '40746064310';
-      waMessage = 'Salut Prime Burger! Doresc o ofertă pentru servicii de catering / burger van pentru un eveniment.';
-      btnLabel = 'Contact WhatsApp Evenimente';
+      waMessage = 'Salut Prime Burger! Dețin / reprezint un spațiu comercial și aș dori să vă propun o nouă locație pentru extinderea rețelei Prime Burger. Vă pot trimite detalii despre oraș, suprafață, vad comercial și fotografii.';
+      btnLabel = 'Propune Spațiu pe WhatsApp';
+      break;
+
+    case 'allergens':
+      userText = 'Ce alergeni conțin cei 2 burgeri (Signature & American Bacon)?';
+      botReply = 'Transparența este prioritatea noastră la Prime Burger! 🍔<br><br>' +
+        '• <strong>Prime Burger Signature (39 LEI):</strong> Conține <em>Gluten</em> (chiflă cu maia), <em>Lapte/Lactoză</em> (Halloumi, unt), <em>Ou</em> (sosul casei), <em>Susan</em>, <em>Muștar</em>.<br>' +
+        '• <strong>American Bacon Double-Cheese (43 LEI):</strong> Conține <em>Gluten</em> (chiflă cu maia), <em>Lapte/Lactoză</em> (Dublu Cheddar), <em>Ou</em> (sos), <em>Susan</em>, <em>Muștar</em>.<br><br>' +
+        '<em>La comanda pe WhatsApp poți solicita bucătăriei excluderea oricărui ingredient (ex: fără sos, fără brânză).</em>';
+      waNumber = `4${loc.phone}`;
+      waMessage = `Salut Prime Burger ${loc.city}! Aș dori detalii suplimentare despre ingrediente și alergeni pentru o comandă.`;
+      btnLabel = `Întreabă Bucătăria (${loc.city})`;
       break;
 
     default:
@@ -1243,24 +1254,38 @@ function handlePredefinedChat(type) {
 
     const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage)}`;
 
+    let extraButtons = '';
+    if (type === 'allergens') {
+      extraButtons = `
+        <a href="assets/docs/ValoriNutritionale_Alergeni.pdf" target="_blank" download class="chat-action-wa-btn" style="background:#374151; margin-right:6px;">
+          <i class="fas fa-file-pdf"></i> Descarcă Fișa PDF
+        </a>
+      `;
+    }
+
     const botMsgEl = document.createElement('div');
     botMsgEl.className = 'chat-msg chat-msg-bot';
     botMsgEl.innerHTML = `
       <div class="chat-bubble bot-bubble">
         <p>${botReply}</p>
-        <a href="${waUrl}" target="_blank" rel="noopener" class="chat-action-wa-btn">
-          <i class="fab fa-whatsapp"></i> ${btnLabel}
-        </a>
+        <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;">
+          ${extraButtons}
+          <a href="${waUrl}" target="_blank" rel="noopener" class="chat-action-wa-btn" style="margin-top:0;">
+            <i class="fab fa-whatsapp"></i> ${btnLabel}
+          </a>
+        </div>
       </div>
       <span class="chat-timestamp">Acum</span>
     `;
     chatDynamicFeed.appendChild(botMsgEl);
     scrollToChatBottom();
 
-    // Auto-open WhatsApp in new tab for seamless conversion
-    setTimeout(() => {
-      window.open(waUrl, '_blank');
-    }, 700);
+    // Auto-open WhatsApp in new tab for direct lead generation
+    if (type !== 'allergens') {
+      setTimeout(() => {
+        window.open(waUrl, '_blank');
+      }, 700);
+    }
   }, 450);
 }
 

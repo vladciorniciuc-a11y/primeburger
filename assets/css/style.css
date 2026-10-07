@@ -3825,3 +3825,65 @@ textarea.form-control {
     height: 72vh;
   }
 }
+
+/* ==========================================
+   BURGER ALLERGENS STRIP IN MENU
+   ========================================== */
+.burger-allergens-strip {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 10px 0 12px 0;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(245, 158, 11, 0.3);
+  border-radius: 8px;
+}
+
+.allergens-title {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #f59e0b;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 2px;
+}
+
+.allergen-tag {
+  font-size: 0.69rem;
+  background: rgba(245, 158, 11, 0.12);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.28);
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* ==========================================
+   MODAL ALLERGEN ALERT (CONFIGURATOR)
+   ========================================== */
+.modal-allergen-alert {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.28);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #E2E8F0;
+  font-size: 0.81rem;
+  line-height: 1.4;
+}
+
+.modal-allergen-alert i {
+  color: #f59e0b;
+  font-size: 1.05rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
