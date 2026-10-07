@@ -121,6 +121,17 @@ const LOCATIONS = {
     lat: 47.7711,
     lng: 27.0089,
     hasDelivery: false
+  },
+  roznov: { 
+    city: 'Roznov', 
+    subdomain: 'roznov.primeburger.ro', 
+    phone: '0749025555', 
+    formattedPhone: '+40 749 025 555',
+    hours: 'Luni - Duminică: 11:00 - 22:00',
+    service: 'Dine-in · La pachet · Livrare locală (max 10 km)',
+    lat: 46.8406,
+    lng: 26.5133,
+    hasDelivery: true
   }
 };
 
@@ -916,7 +927,7 @@ function renderLocationModalState(state, data) {
     geoModalContentBox.innerHTML = `
       <div class="geo-state-scanning">
         <div class="geo-scan-spinner"><i class="fas fa-satellite fa-spin"></i></div>
-        <h4>Scanăm rețeaua națională Prime Burger...</h4>
+        <h4>Scanăm cele 12 restaurante Prime Burger...</h4>
         <p>Căutăm cel mai apropiat restaurant și verificăm dacă te afli în raza de 10 km pentru livrare directă.</p>
       </div>
     `;
@@ -977,7 +988,7 @@ function renderLocationModalState(state, data) {
         </div>
         <h4 class="geo-result-city">Alege Orașul Tău</h4>
         <p class="geo-result-explanation">
-          Localizarea automată prin satelit este oprită sau indisponibilă. Alege orașul dorit din rețeaua Prime Burger România din selectorul de mai jos:
+          Localizarea automată prin satelit este oprită sau indisponibilă. Alege orașul dorit din rețeaua Prime Burger România (12 restaurante active) din selectorul de mai jos:
         </p>
       </div>
     `;
