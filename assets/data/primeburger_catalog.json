@@ -1,0 +1,402 @@
+[
+  {
+    "id": 4054,
+    "name": "Family Bucket Meniu",
+    "slug": "family-bucket-meniu",
+    "category": "Meniuri",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2025/03/family-bucket-meniu-dimensiune-site.png",
+    "short_description": "Spicy strips de pui (240g), Aripioare de pui crocante (240g) + la alegere Fingers cu susan de pui (300g) sau Nuggets de pui (300g), 3 porții cartofi wedges/prăjiți la alegere (480g/330g), 3 sosuri la alegere (120ml), 3 x suc/apă la alegere"
+  },
+  {
+    "id": 4052,
+    "name": "Prime Nuggets Meniu",
+    "slug": "prime-nuggets-meniu",
+    "category": "Meniuri",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2025/03/prime-nuggets-meniu-dimensiune-site.png",
+    "short_description": "nuggets de pui (110g/160g), cartofi wedges/prăjiți (160g/110g), sos la alegere (40ml)"
+  },
+  {
+    "id": 4050,
+    "name": "Aripioare Crocante Meniu",
+    "slug": "aripioare-crocante-meniu",
+    "category": "Meniuri",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2025/03/aripioare-crocante-meniu-dimensiune-site.png",
+    "short_description": "aripioare crocante de pui (160/240g), cartofi wedges/prăjiți (160g/110g), sos la alegere (40ml)"
+  },
+  {
+    "id": 4048,
+    "name": "Chicken File Meniu",
+    "slug": "chicken-file-meniu",
+    "category": "Meniuri",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2025/03/chicken-file-meniu-dimensiune-site.png",
+    "short_description": "fingers cu susan de pui (110g/160g), cartofi wedges/prăjiți (160g/110g), sos la alegere (40ml)"
+  },
+  {
+    "id": 4034,
+    "name": "Spicy strips meniu",
+    "slug": "spicy-strips-meniu",
+    "category": "Meniuri",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2025/03/spicy-strips-menu.png",
+    "short_description": "spicy strips de pui (130/190g), cartofi wedges/prăjiți (160g/110g), sos la alegere (40ml)"
+  },
+  {
+    "id": 4032,
+    "name": "Cappy",
+    "slug": "cappy",
+    "category": "Drinks",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2025/03/cappy-dimensiune-site.png",
+    "short_description": "330 ml"
+  },
+  {
+    "id": 4030,
+    "name": "Apă plată",
+    "slug": "apa-plata",
+    "category": "Drinks",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2025/03/apa-plata-dimensiune-site.png",
+    "short_description": "500 ml"
+  },
+  {
+    "id": 4028,
+    "name": "Apă minerală",
+    "slug": "apa-minerala",
+    "category": "Drinks",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2025/03/apa-minerala-dimensiune-site.png",
+    "short_description": "500 ml"
+  },
+  {
+    "id": 4016,
+    "name": "Salată de Post",
+    "slug": "salata-de-post",
+    "category": "Sides",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2025/03/salata-de-post.png",
+    "short_description": "burger vegetal (80g), mix salată (50g), castraveți proaspeți (70g), crutoane (30g), porumb boabe (50g), roșii (50g), sos maioneză vegetală (40g)"
+  },
+  {
+    "id": 4012,
+    "name": "Crispy Chicken Salad",
+    "slug": "crispy-chicken-salad",
+    "category": "Sides",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2025/03/CRISPY-CHICKEN-SALAD.png",
+    "short_description": "castraveți (70g), strips de pui (55g), roșii (50g), porumb boabe (50g), mix salată (50g), sosul casei (40ml), crutoane (30g), sare"
+  },
+  {
+    "id": 3998,
+    "name": "Chicken Wrap",
+    "slug": "chicken-wrap",
+    "category": "Sides",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2025/03/chicken-wrap-1.png",
+    "short_description": "tortilla (80g), strips de pui (55g), cartofi prăjiți (50g), roșii (40g), sosul casei (30ml), castraveți (20g), mix salată (15g), ceapă (5g)"
+  },
+  {
+    "id": 3996,
+    "name": "Family Bucket",
+    "slug": "family-bucket",
+    "category": "Pui",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2025/03/family-bucket-1.png",
+    "short_description": "spicy strips de pui (240g), aripioare de pui crocante (240g) + la alegere Fingers cu susan de pui (300g) sau Nuggets de pui (300g)"
+  },
+  {
+    "id": 3994,
+    "name": "Sos Cheddar",
+    "slug": "sos-cheddar",
+    "category": "Sauces",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2025/03/sos-cheddar.png",
+    "short_description": "40 ml"
+  },
+  {
+    "id": 3992,
+    "name": "Cartofi Prăjiți",
+    "slug": "cartofi-prajiti",
+    "category": "Cartofi",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2025/03/cartofi-prajiti.png",
+    "short_description": "110 g"
+  },
+  {
+    "id": 3620,
+    "name": "Sos Sweet Chilli",
+    "slug": "sos-sweet-chilli",
+    "category": "Sauces",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/sweet-chilly.png",
+    "short_description": "40 ml"
+  },
+  {
+    "id": 3618,
+    "name": "Sosul Casei",
+    "slug": "sosul-casei",
+    "category": "Sauces",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/Sosul-casei-copy.png",
+    "short_description": "40 ml"
+  },
+  {
+    "id": 3616,
+    "name": "Sos Barbeque",
+    "slug": "sos-barbeque",
+    "category": "Sauces",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/sos-bbq-copy.png",
+    "short_description": "40 ml"
+  },
+  {
+    "id": 3614,
+    "name": "Sos Muștar",
+    "slug": "sos-mustar",
+    "category": "Sauces",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/mustar.png",
+    "short_description": "40 ml"
+  },
+  {
+    "id": 3612,
+    "name": "Sos Maioneză cu usturoi",
+    "slug": "sos-maioneza-cu-usturoi",
+    "category": "Sauces",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/maioneza-cu-usturoi-copy.png",
+    "short_description": "40 ml"
+  },
+  {
+    "id": 3610,
+    "name": "Sos Maioneză",
+    "slug": "sos-maioneza",
+    "category": "Sauces",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/maioneza-copy.png",
+    "short_description": "40 ml"
+  },
+  {
+    "id": 3607,
+    "name": "Sos Ketchup",
+    "slug": "sos-ketchup",
+    "category": "Sauces",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/ketchup-copy.png",
+    "short_description": "40 ml"
+  },
+  {
+    "id": 3603,
+    "name": "Cartofi Wedges",
+    "slug": "cartofi",
+    "category": "Cartofi",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/cartofi-copy.png",
+    "short_description": "160 g"
+  },
+  {
+    "id": 3601,
+    "name": "Meniu Veggie Burger",
+    "slug": "meniu-veggie-burger",
+    "category": "Meniuri",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/meniuveggie-burger-copy.png",
+    "short_description": "burger vegetal de soia (70g), chiflă burger cu maia (60g), maioneză vegetală (30ml), roșii (20g), mix salată (10g), castraveți murați (10g), ceapă rondele (5g) + cartofi wedges/prăjiți (160g/110g) + suc la alegere"
+  },
+  {
+    "id": 3599,
+    "name": "Meniu American Burger",
+    "slug": "meniu-american-burger",
+    "category": "Meniuri",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/meniuAmerican-Burgera-copy.png",
+    "short_description": "carne vită 100% (60g/100g), chiflă burger cu maia (60g/90g), sosul casei (15g/20ml), castraveți murați (15g/20g), ceapă rondele (10g/15g), salam chorizo (10g/15g), ketchup (10ml), mix salată (10g), sare + cartofi wedges/prăjiți (160g/110g) + suc la alegere"
+  },
+  {
+    "id": 3597,
+    "name": "Meniu Barbeque Burger",
+    "slug": "meniu-barbeque-burger",
+    "category": "Meniuri",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/meniubarbeque-copy-1.png",
+    "short_description": "carne vită 100% (60g/100g), chiflă burger cu maia (60g/90g), ardei în oțet (20g/30g), sosul casei (15ml/20ml), sos barbeque (15ml/20ml), brânză cheddar (20g), bacon (20g), ceapă caramelizată (10g/15g), mix salată (10g), sare + cartofi wedges/prăjiți (160g/110g) + suc la alegere"
+  },
+  {
+    "id": 3595,
+    "name": "Meniu Halloumi Burger",
+    "slug": "meniu-halloumi-burger",
+    "category": "Meniuri",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/meniuhalloumi-burger-copy.png",
+    "short_description": "halloumi (60g/100g), chiflă burger cu maia (60g/90g), ardei roșu (30g/50g), sosul casei (30g/40ml), dovlecel (20g/30g), mix salată (10g), rucola (5g), boabe muștar (5g) + cartofi wedges/prăjiți (160g/110g) + suc la alegere"
+  },
+  {
+    "id": 3593,
+    "name": "Meniu Kids Burger",
+    "slug": "meniu-kids-burger",
+    "category": "Meniuri",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/meniukids-burger-copy.png",
+    "short_description": "chiflă cu maia (60g), inel din carne de pui (50g), maioneză (30ml), roșii (15g), mix salată (10g), castraveți murați (10g) + cartofi wedges/prăjiți (160g/110g) + suc la alegere"
+  },
+  {
+    "id": 3591,
+    "name": "Meniu Mexican Burger",
+    "slug": "meniu-mexican-burger",
+    "category": "Meniuri",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/meniumexican-copy.png",
+    "short_description": "chiflă burger cu maia (90g), spicy strips de pui (70g), maioneză (40ml), roșii (25g), castraveți murați (20g), mix salată (10g), ceapă rondele (5g) + cartofi wedges/prăjiți (160g/110g) + suc la alegere"
+  },
+  {
+    "id": 3590,
+    "name": "Meniu Cheese Burger",
+    "slug": "meniu-chesse-burger",
+    "category": "Meniuri",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/cheese-burger-copy-2.png",
+    "short_description": "carne vită 100% (60g/100g), chiflă burger cu maia (60g/90g), roșii (15g/25g), sosul casei (15ml/20ml), sos barbeque (15ml/20ml), brânză cheddar (20g), bacon (20g), castraveți murați (20g), ceapă caramelizată (10g/15g), mix salată (10g), sare + cartofi wedges/prăjiți (160g/110g) + suc la alegere"
+  },
+  {
+    "id": 3587,
+    "name": "Meniu Double CheeseBurger",
+    "slug": "meniu-double-cheeseburger",
+    "category": "Meniuri",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/double-cheeseburger-copy.png",
+    "short_description": "Carne vită 100% (2X60g), chiflă burger cu maia (90g), brânză cheddar (40g), roșii (25g), bacon (20g), sosul casei (20ml), sos barbeque (20ml), castraveți murați (20g), ceapă caramelizată (15g), mix salată (10g), sare + cartofi wedges/prăjiți (160g/110g) + suc la alegere"
+  },
+  {
+    "id": 3585,
+    "name": "Meniu Prime Burger",
+    "slug": "meniu-prime-burger",
+    "category": "Meniuri",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/meniuPrime-Burger-copy.png",
+    "short_description": "carne vită 100% (60g/100g), chiflă burger cu maia (60g/90g), sosul casei (25g/40ml), halloumi (25g/30g), ciuperci (15g/20g), castraveți (15g/20g), mix salată (10g), roșii uscate (10g), rucola (5g), sare + cartofi wedges/prăjiți (160g/110g) + suc la alegere"
+  },
+  {
+    "id": 3583,
+    "name": "Fanta madness",
+    "slug": "fanta-madness",
+    "category": "Drinks",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/fanta-madness.png",
+    "short_description": "330 ml"
+  },
+  {
+    "id": 3581,
+    "name": "Sprite",
+    "slug": "sprite",
+    "category": "Drinks",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/SPRITE.png",
+    "short_description": "330 ml"
+  },
+  {
+    "id": 3579,
+    "name": "Coca-Cola",
+    "slug": "coca-cola",
+    "category": "Drinks",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/coca-cola.png",
+    "short_description": "330 ml"
+  },
+  {
+    "id": 3577,
+    "name": "Fanta portocale",
+    "slug": "fanta",
+    "category": "Drinks",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/fanta.png",
+    "short_description": "330 ml"
+  },
+  {
+    "id": 3575,
+    "name": "Veggie Burger",
+    "slug": "veggie-burger",
+    "category": "Burgers",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/veggie-burger-copy.png",
+    "short_description": "burger vegetal de soia (70g), chiflă burger cu maia (60g), maioneză vegetală (30ml), roșii (20g), mix salată (10g), castraveți murați (10g), ceapă rondele (5g)"
+  },
+  {
+    "id": 3573,
+    "name": "Spicy Strips",
+    "slug": "spicy-strips",
+    "category": "Pui",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/spicy-strips-single-dimensiune-site.png",
+    "short_description": "spicy strips de pui (130/190g)"
+  },
+  {
+    "id": 3571,
+    "name": "Aripioare Crocante",
+    "slug": "prime-wings",
+    "category": "Pui",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/aripioare-crocante-dimensiune-site.png",
+    "short_description": "aripioare crocante de pui (160/240g)"
+  },
+  {
+    "id": 3569,
+    "name": "Prime Burger",
+    "slug": "prime-burger",
+    "category": "Burgers",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/Prime-Burger-copy.png",
+    "short_description": "carne vită 100% (60g/100g), chiflă burger cu maia (60g/90g), sosul casei (25g/40ml), halloumi (25g/30g), ciuperci (15g/20g), castraveți (15g/20g), mix salată (10g), roșii uscate (10g), rucola (5g), sare Informații nutriționale &#8211; PRIME BURGER"
+  },
+  {
+    "id": 3566,
+    "name": "Prime Nuggets",
+    "slug": "prime-nuggets",
+    "category": "Pui",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/prime-nuggets-single-dimensiune-site.png",
+    "short_description": "nuggets de pui (110g/160g)"
+  },
+  {
+    "id": 3564,
+    "name": "Mexican Burger",
+    "slug": "mexican-burger",
+    "category": "Burgers",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/mexican-copy.png",
+    "short_description": "chiflă burger cu maia (90g), spicy strips de pui (70g), maioneză (40ml), roșii (25g), castraveți murați (20g), mix salată (10g), ceapă rondele (5g)"
+  },
+  {
+    "id": 3562,
+    "name": "Kids Burger",
+    "slug": "kids-burger",
+    "category": "Burgers",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/kids-burger-copy.png",
+    "short_description": "chiflă cu maia (60g), inel din carne de pui (50g), maioneză (30ml), roșii (15g), mix salată (10g), castraveți murați (10g), Informații nutriționale &#8211; KIDS BURGER"
+  },
+  {
+    "id": 3560,
+    "name": "Halloumi Burger",
+    "slug": "halloumi-burger",
+    "category": "Burgers",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/cheese-burger-copy.png",
+    "short_description": "halloumi (60g/100g), chiflă burger cu maia (60g/90g), ardei roșu (30g/50g), sosul casei (30g/40ml), dovlecel (20g/30g), mix salată (10g), rucola (5g), boabe muștar (5g) Informații nutriționale &#8211; HALLOUMI BURGER"
+  },
+  {
+    "id": 3558,
+    "name": "Classic HotDog",
+    "slug": "classic-hotdog",
+    "category": "Hot-Dogs",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/classic-hotdog-copy.png",
+    "short_description": "crenvurști (60g), chiflă hot dog cu maia (50g), muștar (10ml), ketchup (10ml) Informații nutriționale &#8211; CLASSIC HOT DOG"
+  },
+  {
+    "id": 3556,
+    "name": "Chicken File",
+    "slug": "chicken-file-menu",
+    "category": "Pui",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/chicken-file-single-dimensiune-site.png",
+    "short_description": "fingers cu susan de pui (110g/160g) Informații nutriționale &#8211; CHICKEN FILE MENIU"
+  },
+  {
+    "id": 3548,
+    "name": "Chicago HotDog",
+    "slug": "chicago-hotdog",
+    "category": "Hot-Dogs",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/chicago-hotdog-copy.png",
+    "short_description": "crenvurști (60g), chiflă hot dog cu maia (50g), ceapă caramelizată (20g), sosul casei (20ml) Informații nutriționale &#8211; CHICAGO HOT DOG"
+  },
+  {
+    "id": 3546,
+    "name": "Cheese Burger",
+    "slug": "chesse-burger",
+    "category": "Burgers",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/cheese-burger-copy.png",
+    "short_description": "carne vită 100% (60g/100g), chiflă burger cu maia (60g/90g), roșii (15g/25g), sosul casei (15ml/20ml), sos barbeque (15ml/20ml), brânză cheddar (20g), bacon (20g), castraveți murați (20g), ceapă caramelizată (10g/15g), mix salată (10g), sare Informații nutriționale &#8211; CHEES BURGER"
+  },
+  {
+    "id": 3544,
+    "name": "Barbeque Burger",
+    "slug": "barbeque-burger",
+    "category": "Burgers",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/barbeque-burger-bt-1.png",
+    "short_description": "carne vită 100% (60g/100g), chiflă burger cu maia (60g/90g), ardei în oțet (20g/30g), sosul casei (15ml/20ml), sos barbeque (15ml/20ml), brânză cheddar (20g), bacon (20g), ceapă caramelizată (10g/15g), mix salată (10g), sare Informații nutriționale &#8211; BARBEQUE BURGER"
+  },
+  {
+    "id": 3542,
+    "name": "American Burger",
+    "slug": "american-burger",
+    "category": "Burgers",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2022/07/american-burger-bt.png",
+    "short_description": "carne vită 100% (60g/100g), chiflă burger cu maia (60g/90g), sosul casei (15g/20ml), castraveți murați (15g/20g), ceapă rondele (10g/15g), salam chorizo (10g/15g), ketchup (10ml), mix salată (10g), sare Informații nutriționale &#8211; AMERICAN BURGER"
+  },
+  {
+    "id": 50,
+    "name": "Double CheeseBurger",
+    "slug": "double-cheese",
+    "category": "Burgers",
+    "image": "https://www.primeburger.ro/wp-content/uploads/2020/08/double-cheeseburger-copy.png",
+    "short_description": "Carne vită 100% (2X60g), chiflă burger cu maia (90g), brânză cheddar (40g), roșii (25g), bacon (20g), sosul casei (20ml), sos barbeque (20ml), castraveți murați (20g), ceapă caramelizată (15g), mix salată (10g), sare"
+  }
+]
