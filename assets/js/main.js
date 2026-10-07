@@ -411,8 +411,7 @@ function updateSubdomainView(key) {
 // Populate menu & cart dropdowns from LOCATIONS
 function populateLocationDropdowns() {
   const optionsHtml = Object.entries(LOCATIONS).map(([key, loc]) => {
-    const deliveryTag = loc.hasDelivery ? ' [Livrare 10km]' : ' [Doar Ridicare]';
-    return `<option value="${key}">${loc.city} - ${loc.subdomain}${deliveryTag}</option>`;
+    return `<option value="${key}">${loc.city} - ${loc.subdomain}</option>`;
   }).join('');
 
   if (menuLocationSelect) {
@@ -433,6 +432,7 @@ function populateLocationDropdowns() {
     });
   }
 
+  // Geo modal selector: Curat fara 'livrare 10km'
   if (geoModalSelect) {
     geoModalSelect.innerHTML = optionsHtml;
     geoModalSelect.value = selectedLocationKey;
@@ -473,22 +473,46 @@ document.querySelectorAll('.radar-node').forEach(node => {
 // ==========================================
 let currentBurger = {
   name: 'Prime Burger Signature',
-  basePrice: 0,
+  basePrice: 39,
   pattyPrice: 0,
   pattyName: 'Standard Patty (120g)',
   sidePrice: 0,
   sideName: 'Fără Cartofi',
   sauces: [],
   drinks: [],
-  notes: ''
+  notes: '',
+  slug: 'prime-signature'
 };
 
 const orderModal = document.getElementById('orderModal');
 const modalBurgerTitle = document.getElementById('modalBurgerTitle');
 
+function getBurgerImage(burgerName) {
+  const lower = (burgerName || '').toLowerCase();
+  if (lower.includes('bacon') || lower.includes('american')) {
+    return 'assets/images/american-burger.png';
+  }
+  if (lower.includes('cheese') || lower.includes('dublu')) {
+    return 'assets/images/double-cheeseburger.png';
+  }
+  return 'assets/images/prime-burger.png';
+}
+
+function updateConfiguratorLivePrice() {
+  const saucesTotal = currentBurger.sauces.reduce((sum, s) => sum + (s.price || 0), 0);
+  const drinksTotal = currentBurger.drinks.reduce((sum, d) => sum + (d.price || 0), 0);
+  const total = currentBurger.basePrice + currentBurger.pattyPrice + currentBurger.sidePrice + saucesTotal + drinksTotal;
+  
+  const livePriceEl = document.getElementById('configBurgerLivePrice');
+  if (livePriceEl) {
+    livePriceEl.textContent = `${total} LEI`;
+  }
+  return total;
+}
+
 function openOrderModal(burgerName, price, slug) {
   currentBurger.name = burgerName;
-  currentBurger.basePrice = price || 0;
+  currentBurger.basePrice = price || (burgerName.toLowerCase().includes('bacon') ? 43 : 39);
   currentBurger.pattyPrice = 0;
   currentBurger.pattyName = 'Standard Patty (120g)';
   currentBurger.sidePrice = 0;
@@ -496,6 +520,7 @@ function openOrderModal(burgerName, price, slug) {
   currentBurger.sauces = [];
   currentBurger.drinks = [];
   currentBurger.notes = '';
+  currentBurger.slug = slug || 'prime-burger';
 
   if (modalBurgerTitle) modalBurgerTitle.textContent = burgerName;
 
@@ -510,6 +535,8 @@ function openOrderModal(burgerName, price, slug) {
     c.classList.toggle('selected', idx === 0);
   });
   document.querySelectorAll('.option-card-check').forEach(c => c.classList.remove('selected'));
+
+  updateConfiguratorLivePrice();
 
   if (orderModal) {
     orderModal.classList.add('active');
@@ -530,6 +557,8 @@ document.querySelectorAll('#pattyOptions .option-card-radio').forEach(opt => {
     document.querySelectorAll('#pattyOptions .option-card-radio').forEach(o => o.classList.remove('selected'));
     opt.classList.add('selected');
     currentBurger.pattyName = opt.dataset.name;
+    currentBurger.pattyPrice = parseInt(opt.dataset.price) || 0;
+    updateConfiguratorLivePrice();
   });
 });
 
@@ -539,6 +568,8 @@ document.querySelectorAll('#sidesOptions .option-card-radio').forEach(opt => {
     document.querySelectorAll('#sidesOptions .option-card-radio').forEach(o => o.classList.remove('selected'));
     opt.classList.add('selected');
     currentBurger.sideName = opt.dataset.name;
+    currentBurger.sidePrice = parseInt(opt.dataset.price) || 0;
+    updateConfiguratorLivePrice();
   });
 });
 
@@ -554,6 +585,7 @@ document.querySelectorAll('#saucesOptions .option-card-check').forEach(opt => {
     } else {
       currentBurger.sauces = currentBurger.sauces.filter(s => s.name !== name);
     }
+    updateConfiguratorLivePrice();
   });
 });
 
@@ -569,6 +601,7 @@ document.querySelectorAll('#drinksOptions .option-card-check').forEach(opt => {
     } else {
       currentBurger.drinks = currentBurger.drinks.filter(d => d.name !== name);
     }
+    updateConfiguratorLivePrice();
   });
 });
 
@@ -580,22 +613,26 @@ let cart = []; // Array of burger objects
 function addCurrentBurgerToCart() {
   const notesInput = document.getElementById('configBurgerNotes');
   const customNotes = notesInput ? notesInput.value.trim() : '';
+  const itemPrice = updateConfiguratorLivePrice();
 
   const item = {
     id: Date.now() + Math.floor(Math.random() * 1000),
     name: currentBurger.name,
+    image: getBurgerImage(currentBurger.name),
     patty: currentBurger.pattyName,
     side: currentBurger.sideName,
     sauces: [...currentBurger.sauces],
     drinks: [...currentBurger.drinks],
     notes: customNotes,
+    unitPrice: itemPrice,
+    totalPrice: itemPrice,
     quantity: 1
   };
 
   cart.push(item);
   renderCart();
   closeOrderModal();
-  showToast(`🍔 ${item.name} a fost adăugat în comanda ta!`);
+  showToast(`🍔 ${item.name} (${itemPrice} LEI) a fost adăugat în comandă!`);
 }
 
 function removeCartItem(id) {
@@ -619,8 +656,43 @@ function updateCartItemQty(id, delta) {
   }
 }
 
+// Anulare comanda si golire cos (din bara meniu jos sau popup)
+function cancelEntireOrder() {
+  if (cart.length === 0) {
+    showToast('Coșul de cumpărături este deja gol.');
+    return;
+  }
+  if (confirm('Sigur dorești să anulezi comanda curentă? Toate produsele selectate vor fi eliminate din coș.')) {
+    cart = [];
+    renderCart();
+    closeCartModal();
+    showToast('❌ Comanda a fost anulată cu succes, iar coșul a fost golit.');
+  }
+}
+
+function updateCartDeliveryUI() {
+  const orderTypeSelect = document.getElementById('cartOrderTypeSelect');
+  const addressWrap = document.getElementById('cartAddressFieldWrap');
+  const deliveryBadge = document.getElementById('cartFooterDeliveryBadge');
+  const isDelivery = orderTypeSelect && orderTypeSelect.value === 'Livrare la domiciliu';
+
+  if (addressWrap) {
+    addressWrap.style.display = isDelivery ? 'block' : 'none';
+  }
+  if (deliveryBadge) {
+    if (isDelivery) {
+      deliveryBadge.innerHTML = '<i class="fas fa-motorcycle"></i> Livrare la domiciliu (în raza de max 10 km)';
+      deliveryBadge.style.color = '#34d399';
+    } else {
+      deliveryBadge.innerHTML = '<i class="fas fa-shopping-bag"></i> Ridicare din restaurant (La pachet)';
+      deliveryBadge.style.color = '#FFC222';
+    }
+  }
+}
+
 function renderCart() {
   const totalBurgers = cart.reduce((acc, it) => acc + it.quantity, 0);
+  const totalOrderPrice = cart.reduce((acc, it) => acc + (it.totalPrice * it.quantity), 0);
 
   // 1. Update Floating Cart Bar
   const floatingBar = document.getElementById('floatingCartBar');
@@ -635,7 +707,7 @@ function renderCart() {
       if (cartCountBadge) cartCountBadge.textContent = totalBurgers;
       if (cartCountBtn) cartCountBtn.textContent = totalBurgers;
       if (cartSummaryTitle) {
-        cartSummaryTitle.textContent = `Comanda Ta (${totalBurgers} ${totalBurgers === 1 ? 'burger' : 'burgeri'})`;
+        cartSummaryTitle.textContent = `Comanda Ta: ${totalOrderPrice} LEI (${totalBurgers} ${totalBurgers === 1 ? 'burger' : 'burgeri'})`;
       }
       const snippet = document.getElementById('cartLocationSnippet');
       if (snippet && loc) {
@@ -669,28 +741,44 @@ function renderCart() {
 
         return `
           <div class="cart-item-card">
-            <div class="cart-item-header">
-              <div class="cart-item-title-wrap">
-                <span class="cart-item-idx">${index + 1}</span>
-                <h4 class="cart-item-name">${item.name}</h4>
+            <div class="cart-item-main-row">
+              <!-- Imagine Produs: EXCLUSIV LA BURGER -->
+              <div class="cart-burger-thumb-wrap">
+                <img src="${item.image}" alt="${item.name}" class="cart-burger-thumb-img">
               </div>
-              <button type="button" class="btn-remove-cart-item" onclick="removeCartItem(${item.id})" title="Șterge acest burger" aria-label="Șterge burger">
-                <i class="fas fa-trash-alt"></i>
-              </button>
-            </div>
-            <div class="cart-item-specs">
-              <div class="cart-spec-pill"><i class="fas fa-drumstick-bite"></i> ${item.patty}</div>
-              <div class="cart-spec-pill"><i class="fas fa-utensils"></i> ${item.side}</div>
-              <div class="cart-spec-pill"><i class="fas fa-mortar-pestle"></i> ${saucesStr}</div>
-              <div class="cart-spec-pill"><i class="fas fa-glass-cheers"></i> ${drinksStr}</div>
-              ${item.notes ? `<div class="cart-spec-pill note-pill"><i class="fas fa-comment-dots"></i> ${item.notes}</div>` : ''}
-            </div>
-            <div class="cart-item-footer">
-              <span style="font-size:0.82rem; color:var(--text-muted); font-weight:600;">Porții / Cantitate:</span>
-              <div class="cart-qty-stepper">
-                <button type="button" class="qty-btn" onclick="updateCartItemQty(${item.id}, -1)" aria-label="Scade cantitate">-</button>
-                <span class="qty-val">${item.quantity}</span>
-                <button type="button" class="qty-btn" onclick="updateCartItemQty(${item.id}, 1)" aria-label="Crește cantitate">+</button>
+
+              <div class="cart-item-details">
+                <div class="cart-item-header">
+                  <div class="cart-item-title-wrap">
+                    <span class="cart-item-idx">${index + 1}</span>
+                    <div>
+                      <h4 class="cart-item-name">${item.name}</h4>
+                      <span class="cart-item-price-tag">${item.totalPrice} LEI / porție</span>
+                    </div>
+                  </div>
+                  <button type="button" class="btn-remove-cart-item" onclick="removeCartItem(${item.id})" title="Șterge acest burger" aria-label="Șterge burger">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </div>
+                
+                <div class="cart-item-specs">
+                  <div class="cart-spec-pill"><i class="fas fa-drumstick-bite"></i> ${item.patty}</div>
+                  <div class="cart-spec-pill"><i class="fas fa-utensils"></i> ${item.side}</div>
+                  <div class="cart-spec-pill"><i class="fas fa-mortar-pestle"></i> ${saucesStr}</div>
+                  <div class="cart-spec-pill"><i class="fas fa-glass-cheers"></i> ${drinksStr}</div>
+                  ${item.notes ? `<div class="cart-spec-pill note-pill"><i class="fas fa-comment-dots"></i> ${item.notes}</div>` : ''}
+                </div>
+
+                <div class="cart-item-footer">
+                  <div class="cart-subtotal-val">
+                    Subtotal: <strong style="color:var(--primary); font-size:1.02rem;">${item.totalPrice * item.quantity} LEI</strong>
+                  </div>
+                  <div class="cart-qty-stepper">
+                    <button type="button" class="qty-btn" onclick="updateCartItemQty(${item.id}, -1)" aria-label="Scade cantitate">-</button>
+                    <span class="qty-val">${item.quantity}</span>
+                    <button type="button" class="qty-btn" onclick="updateCartItemQty(${item.id}, 1)" aria-label="Crește cantitate">+</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -699,16 +787,18 @@ function renderCart() {
     }
   }
 
-  // 3. Update Footer Total Text
+  // 3. Update Footer Total Text & Delivery Badge
   const footerCount = document.getElementById('cartFooterCount');
   const footerTotal = document.getElementById('cartFooterTotalText');
-  if (footerCount) footerCount.textContent = `Total: ${totalBurgers} ${totalBurgers === 1 ? 'Produs' : 'Produse'}`;
-  if (footerTotal) footerTotal.textContent = `${totalBurgers} ${totalBurgers === 1 ? 'Burger Selectat' : 'Burgeri Selectați'}`;
+  if (footerCount) footerCount.textContent = `(${totalBurgers} ${totalBurgers === 1 ? 'burger selectat' : 'burgeri selectați'})`;
+  if (footerTotal) footerTotal.textContent = `${totalOrderPrice} LEI`;
+
+  updateCartDeliveryUI();
 
   // 4. Sync WhatsApp button text
   const btnSubmit = document.getElementById('btnSubmitCartWhatsApp');
   if (btnSubmit && loc) {
-    btnSubmit.innerHTML = `<i class="fab fa-whatsapp"></i> Trimite Comanda pe WhatsApp (${loc.city})`;
+    btnSubmit.innerHTML = `<i class="fab fa-whatsapp"></i> Trimite Comanda pe WhatsApp (${totalOrderPrice} LEI)`;
   }
 }
 
@@ -738,6 +828,7 @@ function openCartModal() {
   }
   renderCart();
   updateFulfillmentOptions();
+  updateCartDeliveryUI();
   if (cartModal) {
     cartModal.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -760,10 +851,7 @@ function scrollToMenu() {
 const cartOrderTypeSelect = document.getElementById('cartOrderTypeSelect');
 if (cartOrderTypeSelect) {
   cartOrderTypeSelect.addEventListener('change', () => {
-    const addressWrap = document.getElementById('cartAddressFieldWrap');
-    if (addressWrap) {
-      addressWrap.style.display = cartOrderTypeSelect.value === 'Livrare la domiciliu' ? 'block' : 'none';
-    }
+    updateCartDeliveryUI();
   });
 }
 
@@ -780,12 +868,11 @@ if (btnSubmitCartWhatsApp) {
 
     const loc = LOCATIONS[selectedLocationKey] || LOCATIONS.bistrita;
     const name = document.getElementById('cartCustomerName')?.value.trim() || 'Client';
-    const phone = document.getElementById('cartCustomerPhone')?.value.trim() || '';
     const orderType = document.getElementById('cartOrderTypeSelect')?.value || 'Ridicare din restaurant';
     const address = document.getElementById('cartCustomerAddress')?.value.trim() || '';
     const notes = document.getElementById('cartCustomerNotes')?.value.trim() || '';
 
-    // Validate delivery address if delivery chosen
+    // Validate delivery address if delivery chosen (inlocuieste telefonul)
     if (orderType === 'Livrare la domiciliu' && !address) {
       showToast('Te rugăm să completezi adresa de livrare!');
       document.getElementById('cartCustomerAddress')?.focus();
@@ -793,6 +880,7 @@ if (btnSubmitCartWhatsApp) {
     }
 
     const totalBurgers = cart.reduce((acc, it) => acc + it.quantity, 0);
+    const totalOrderPrice = cart.reduce((acc, it) => acc + (it.totalPrice * it.quantity), 0);
 
     let msg = `🍔 *COMANDĂ NOUĂ PRIME BURGER (${loc.city.toUpperCase()})*\n`;
     msg += `🌐 *Subdomeniu:* https://${loc.subdomain}\n`;
@@ -803,7 +891,8 @@ if (btnSubmitCartWhatsApp) {
     msg += `📋 *PRODUSE COMANDATE (${totalBurgers} ${totalBurgers === 1 ? 'BURGER' : 'BURGERI'}):*\n\n`;
 
     cart.forEach((item, idx) => {
-      msg += `*${idx + 1}. ${item.name.toUpperCase()}* (x${item.quantity})\n`;
+      const subtotal = item.totalPrice * item.quantity;
+      msg += `*${idx + 1}. ${item.name.toUpperCase()}* (x${item.quantity}) - *${subtotal} LEI*\n`;
       msg += `   • Carne: ${item.patty}\n`;
       msg += `   • Garnitură: ${item.side}\n`;
       const saucesStr = item.sauces.length > 0 ? item.sauces.map(s => s.name).join(', ') : 'Fără sosuri';
@@ -817,24 +906,26 @@ if (btnSubmitCartWhatsApp) {
     });
 
     msg += `━━━━━━━━━━━━━━━━━━━━\n`;
-    msg += `👤 *DETALII CLIENT & PRELUARE:*\n`;
-    msg += `• Nume: ${name}\n`;
-    if (phone) msg += `• Telefon contact: ${phone}\n`;
+    msg += `💰 *TOTAL DE PLATĂ:* *${totalOrderPrice} LEI*\n`;
+    msg += `━━━━━━━━━━━━━━━━━━━━\n`;
+    msg += `👤 *DETALII PRELUARE COMANDĂ:*\n`;
+    msg += `• Nume client: ${name}\n`;
     msg += `• Modalitate: ${orderType}\n`;
     if (orderType === 'Livrare la domiciliu' && address) {
       msg += `• Adresă livrare: ${address}\n`;
+      msg += `• Notă livrare: În limita razei de max 10 km de la restaurant\n`;
     }
     if (notes) {
-      msg += `• Mențiuni generale: ${notes}\n`;
+      msg += `• Observații: ${notes}\n`;
     }
-    msg += `\n_Comandă generată direct pe platforma oficială Prime Burger România._`;
+    msg += `\n_Comandă transmisă direct pe WhatsApp fără comisioane către platforme terțe._`;
 
     const encodedMsg = encodeURIComponent(msg);
     const whatsappUrl = `https://wa.me/4${loc.phone}?text=${encodedMsg}`;
 
     window.open(whatsappUrl, '_blank');
     closeCartModal();
-    showToast(`Comanda ta (${totalBurgers} burgeri) a fost transmisă pe WhatsApp către restaurantul din ${loc.city}!`);
+    showToast(`Comanda ta (${totalBurgers} burgeri - ${totalOrderPrice} LEI) a fost transmisă pe WhatsApp către restaurantul din ${loc.city}!`);
   });
 }
 
@@ -1052,6 +1143,8 @@ window.detectUserLocation = detectUserLocation;
 window.handleOrderCtaClick = handleOrderCtaClick;
 window.showToast = showToast;
 window.hideToast = hideToast;
+window.cancelEntireOrder = cancelEntireOrder;
+window.updateCartDeliveryUI = updateCartDeliveryUI;
 
 // Close modals when clicking outside sheet
 if (orderModal) {

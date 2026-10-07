@@ -615,11 +615,16 @@
                 <span class="pill-tag"><i class="fas fa-cheese"></i> Halloumi</span>
                 <span class="pill-tag"><i class="fas fa-mortar-pestle"></i> Sosul Casei</span>
               </div>
+
+              <div class="burger-card-pricing">
+                <span class="burger-price-val">39 LEI</span>
+                <span class="burger-price-sub">rețetă completă</span>
+              </div>
             </div>
           </div>
 
-          <button class="btn btn-primary" onclick="openOrderModal('Prime Burger Signature', 0, 'prime-signature')">
-            <i class="fas fa-sliders-h"></i> Configurează Meniul (Pas cu Pas)
+          <button class="btn btn-primary" onclick="openOrderModal('Prime Burger Signature', 39, 'prime-signature')">
+            <i class="fas fa-sliders-h"></i> Configurează & Comandă (39 LEI)
           </button>
         </article>
 
@@ -645,11 +650,16 @@
                 <span class="pill-tag"><i class="fas fa-bacon"></i> Bacon Crocant</span>
                 <span class="pill-tag"><i class="fas fa-cheese"></i> Dublu Cheddar</span>
               </div>
+
+              <div class="burger-card-pricing">
+                <span class="burger-price-val">43 LEI</span>
+                <span class="burger-price-sub">rețetă completă</span>
+              </div>
             </div>
           </div>
 
-          <button class="btn btn-primary" onclick="openOrderModal('American Bacon Double-Cheese', 0, 'american-bacon')">
-            <i class="fas fa-sliders-h"></i> Configurează Meniul (Pas cu Pas)
+          <button class="btn btn-primary" onclick="openOrderModal('American Bacon Double-Cheese', 43, 'american-bacon')">
+            <i class="fas fa-sliders-h"></i> Configurează & Comandă (43 LEI)
           </button>
         </article>
       </div>
@@ -1085,9 +1095,11 @@
           <div class="step-options-grid" id="pattyOptions">
             <div class="option-card-radio selected" data-type="patty" data-name="Standard Patty (120g)" data-price="0">
               <span class="option-name">Standard (120g)</span>
+              <span class="option-price">Inclus</span>
             </div>
-            <div class="option-card-radio" data-type="patty" data-name="Dublu Patty (+100g)" data-price="0">
+            <div class="option-card-radio" data-type="patty" data-name="Dublu Patty (+100g)" data-price="12">
               <span class="option-name">Dublu Patty (+100g)</span>
+              <span class="option-price">+12 LEI</span>
             </div>
           </div>
         </div>
@@ -1101,14 +1113,17 @@
           <div class="step-options-grid" id="sidesOptions">
             <div class="option-card-radio selected" data-type="side" data-name="Fără Cartofi" data-price="0">
               <span class="option-name">Fără Cartofi</span>
+              <span class="option-price">+0 LEI</span>
             </div>
-            <div class="option-card-radio" data-type="side" data-name="Cartofi Wedges (160g)" data-price="0">
+            <div class="option-card-radio" data-type="side" data-name="Cartofi Wedges (160g)" data-price="9">
               <img src="assets/images/cartofi-wedges.png" alt="Cartofi Wedges" class="option-thumb-img">
               <span class="option-name">Cartofi Wedges</span>
+              <span class="option-price">+9 LEI</span>
             </div>
-            <div class="option-card-radio" data-type="side" data-name="Cartofi Prăjiți (110g)" data-price="0">
+            <div class="option-card-radio" data-type="side" data-name="Cartofi Prăjiți (110g)" data-price="8">
               <img src="assets/images/cartofi-prajiti.png" alt="Cartofi Prăjiți" class="option-thumb-img">
               <span class="option-name">Cartofi Prăjiți</span>
+              <span class="option-price">+8 LEI</span>
             </div>
           </div>
         </div>
@@ -1120,25 +1135,30 @@
             <small style="color:var(--text-dim);">Selectează sosurile dorite</small>
           </div>
           <div class="step-options-grid" id="saucesOptions">
-            <div class="option-card-check" data-name="Sosul Casei" data-price="0">
+            <div class="option-card-check" data-name="Sosul Casei" data-price="4">
               <img src="assets/images/sos-casei.png" alt="Sosul Casei" class="option-thumb-img">
               <span class="option-name">Sosul Casei</span>
+              <span class="option-price">+4 LEI</span>
             </div>
-            <div class="option-card-check" data-name="Sos Cheddar" data-price="0">
+            <div class="option-card-check" data-name="Sos Cheddar" data-price="5">
               <img src="assets/images/sos-cheddar.png" alt="Sos Cheddar" class="option-thumb-img">
               <span class="option-name">Sos Cheddar</span>
+              <span class="option-price">+5 LEI</span>
             </div>
-            <div class="option-card-check" data-name="Maioneză cu usturoi" data-price="0">
+            <div class="option-card-check" data-name="Maioneză cu usturoi" data-price="4">
               <img src="assets/images/sos-garlic.png" alt="Mayo Usturoi" class="option-thumb-img">
               <span class="option-name">Mayo Usturoi</span>
+              <span class="option-price">+4 LEI</span>
             </div>
-            <div class="option-card-check" data-name="Sweet Chilli" data-price="0">
+            <div class="option-card-check" data-name="Sweet Chilli" data-price="4">
               <img src="assets/images/sos-sweet-chilli.png" alt="Sweet Chilli" class="option-thumb-img">
               <span class="option-name">Sweet Chilli</span>
+              <span class="option-price">+4 LEI</span>
             </div>
-            <div class="option-card-check" data-name="Sos Barbeque" data-price="0">
+            <div class="option-card-check" data-name="Sos Barbeque" data-price="4">
               <img src="assets/images/sos-bbq.png" alt="Sos BBQ" class="option-thumb-img">
               <span class="option-name">Sos BBQ</span>
+              <span class="option-price">+4 LEI</span>
             </div>
           </div>
         </div>
@@ -1150,25 +1170,30 @@
             <small style="color:var(--text-dim);">Adaugă răcoritoare</small>
           </div>
           <div class="step-options-grid" id="drinksOptions">
-            <div class="option-card-check" data-name="Coca-Cola 330ml" data-price="0">
+            <div class="option-card-check" data-name="Coca-Cola 330ml" data-price="8">
               <img src="assets/images/coca-cola.png" alt="Coca-Cola" class="option-thumb-img">
               <span class="option-name">Coca-Cola</span>
+              <span class="option-price">+8 LEI</span>
             </div>
-            <div class="option-card-check" data-name="Sprite 330ml" data-price="0">
+            <div class="option-card-check" data-name="Sprite 330ml" data-price="8">
               <img src="assets/images/sprite.png" alt="Sprite" class="option-thumb-img">
               <span class="option-name">Sprite</span>
+              <span class="option-price">+8 LEI</span>
             </div>
-            <div class="option-card-check" data-name="Fanta Portocale 330ml" data-price="0">
+            <div class="option-card-check" data-name="Fanta Portocale 330ml" data-price="8">
               <img src="assets/images/fanta.png" alt="Fanta" class="option-thumb-img">
               <span class="option-name">Fanta</span>
+              <span class="option-price">+8 LEI</span>
             </div>
-            <div class="option-card-check" data-name="Cappy Pulpy 330ml" data-price="0">
+            <div class="option-card-check" data-name="Cappy Pulpy 330ml" data-price="9">
               <img src="assets/images/cappy.png" alt="Cappy Pulpy" class="option-thumb-img">
               <span class="option-name">Cappy Pulpy</span>
+              <span class="option-price">+9 LEI</span>
             </div>
-            <div class="option-card-check" data-name="Apă Plată 500ml" data-price="0">
+            <div class="option-card-check" data-name="Apă Plată 500ml" data-price="6">
               <img src="assets/images/apa-plata.png" alt="Apă Plată" class="option-thumb-img">
               <span class="option-name">Apă Plată</span>
+              <span class="option-price">+6 LEI</span>
             </div>
           </div>
         </div>
@@ -1186,8 +1211,8 @@
       <!-- Sticky Footer Total & Action -->
       <div class="modal-footer-sticky">
         <div class="modal-total-wrap">
-          <small>Standard Rețetar</small>
-          <strong style="color:var(--primary); font-size:1.02rem;"><i class="fas fa-check-circle" style="color:#34d399;"></i> Rețetă 100% Calibrată</strong>
+          <small>Preț Burger Configurat</small>
+          <strong id="configBurgerLivePrice" style="color:var(--primary); font-size:1.45rem; font-family:var(--font-heading); font-weight:900;">39 LEI</strong>
         </div>
 
         <div class="modal-actions-duo">
@@ -1208,11 +1233,14 @@
       <div class="cart-bar-info">
         <div class="cart-bar-badge" id="cartCountBadge">0</div>
         <div>
-          <div class="cart-bar-heading" id="cartSummaryTitle">Comanda Ta (0 burgeri)</div>
+          <div class="cart-bar-heading" id="cartSummaryTitle">Comanda Ta: 0 LEI (0 burgeri)</div>
           <small class="cart-bar-sub" id="cartLocationSnippet">Prime Burger Bistrița</small>
         </div>
       </div>
       <div class="cart-bar-actions">
+        <button type="button" class="btn-cancel-cart-bar" onclick="cancelEntireOrder()" title="Anulează comanda și golește coșul">
+          <i class="fas fa-trash-alt"></i> Anulează Comanda
+        </button>
         <button type="button" class="btn btn-green btn-sm" onclick="openCartModal()">
           <i class="fas fa-shopping-bag"></i> Vezi Coșul & Trimite WhatsApp (<span id="cartCountBtn">0</span>)
         </button>
@@ -1273,46 +1301,57 @@
           </div>
         </div>
 
-        <!-- 3. Client & Adresă -->
+        <!-- 3. Client & Adresă (Fără număr de telefon, direct WhatsApp) -->
         <div class="step-box">
           <div class="step-box-header">
-            <span class="step-title"><span class="step-num"><i class="fas fa-user"></i></span> Date de Contact & Livrare</span>
-            <small style="color:var(--text-dim);">Fără cont necesar</small>
+            <span class="step-title"><span class="step-num"><i class="fas fa-user"></i></span> Date de Identificare</span>
+            <small style="color:#25D366; font-weight:700;"><i class="fab fa-whatsapp"></i> Direct prin WhatsApp</small>
           </div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
-            <div>
-              <label class="form-label" for="cartCustomerName">Numele Tău *</label>
-              <input type="text" id="cartCustomerName" class="form-control" placeholder="ex: Alexandru Pop" required>
-            </div>
-            <div>
-              <label class="form-label" for="cartCustomerPhone">Telefon Contact *</label>
-              <input type="tel" id="cartCustomerPhone" class="form-control" placeholder="ex: 0740 123 456">
-            </div>
+          <div style="margin-bottom: 10px;">
+            <label class="form-label" for="cartCustomerName">Numele Tău *</label>
+            <input type="text" id="cartCustomerName" class="form-control" placeholder="ex: Alexandru Pop" required>
           </div>
 
+          <!-- Adresă Livrare (apare DOAR când este selectată Livrare la domiciliu, înlocuind telefonul) -->
           <div id="cartAddressFieldWrap" style="margin-bottom: 10px; display: none;">
-            <label class="form-label" for="cartCustomerAddress">Adresă de Livrare (în limita razei de 10 km) *</label>
-            <input type="text" id="cartCustomerAddress" class="form-control" placeholder="Strada, Număr, Bloc, Scară, Apartament">
+            <label class="form-label" for="cartCustomerAddress">
+              <i class="fas fa-map-marker-alt" style="color:var(--primary);"></i> Adresă Completă de Livrare (în raza de 10 km) *
+            </label>
+            <input type="text" id="cartCustomerAddress" class="form-control" placeholder="Strada, Număr, Bloc, Scară, Apartament / Reper">
+            <small style="color:var(--text-dim); display:block; margin-top:4px; font-size:0.75rem;">
+              <i class="fab fa-whatsapp" style="color:#25D366;"></i> Numărul de contact nu este necesar aici – comanda este expediată direct de pe numărul tău de WhatsApp.
+            </small>
           </div>
 
           <div>
             <label class="form-label" for="cartCustomerNotes">Observații Comandă (Opțional)</label>
-            <textarea id="cartCustomerNotes" class="form-control" style="min-height: 55px;" placeholder="ex: Vă rog să sunați la interfon 12 când ajunge curierul..."></textarea>
+            <textarea id="cartCustomerNotes" class="form-control" style="min-height: 52px;" placeholder="ex: Sună la interfon 12 când ajunge curierul..."></textarea>
           </div>
         </div>
       </div>
 
       <!-- Sticky Footer Total & Action -->
-      <div class="modal-footer-sticky">
-        <div class="modal-total-wrap">
-          <small id="cartFooterCount">Total Comandă</small>
-          <strong id="cartFooterTotalText" style="color:var(--primary); font-size:1.05rem;">0 Burgeri</strong>
+      <div class="modal-footer-sticky cart-modal-footer">
+        <div class="modal-total-wrap" id="cartModalTotalSection">
+          <div id="cartFooterDeliveryBadge" style="font-size:0.76rem; color:#34d399; font-weight:700; margin-bottom:2px;">
+            <i class="fas fa-shopping-bag"></i> Ridicare din restaurant (La pachet)
+          </div>
+          <div style="display:flex; align-items:baseline; gap:6px;">
+            <span style="font-size:0.85rem; color:var(--text-muted); font-weight:600;">Total de Plată:</span>
+            <strong id="cartFooterTotalText" style="color:var(--primary); font-size:1.45rem; font-family:var(--font-heading); font-weight:900;">0 LEI</strong>
+          </div>
+          <small id="cartFooterCount" style="color:var(--text-dim); font-size:0.75rem;">(0 burgeri selectați)</small>
         </div>
 
-        <button type="button" class="btn btn-green" id="btnSubmitCartWhatsApp">
-          <i class="fab fa-whatsapp"></i> Trimite Comanda pe WhatsApp
-        </button>
+        <div class="modal-footer-actions">
+          <button type="button" class="btn-cancel-modal" onclick="cancelEntireOrder()" title="Anulează comanda și golește coșul">
+            <i class="fas fa-trash-alt"></i> Anulează Comanda
+          </button>
+          <button type="button" class="btn btn-green" id="btnSubmitCartWhatsApp">
+            <i class="fab fa-whatsapp"></i> Trimite Comanda pe WhatsApp
+          </button>
+        </div>
       </div>
     </div>
   </div>
